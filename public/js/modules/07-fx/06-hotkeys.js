@@ -121,7 +121,7 @@ function executeHotkeyAction(actionKey, source) {
 }
 function desktopInteractionHotkeyHint() {
   var binding = hotkeySettings && hotkeySettings.global && hotkeySettings.global.toggleDesktopInteraction;
-  return binding ? ('按 ' + formatHotkey(binding) + ' 进入 / 退出完整桌面模式') : '可在热键设置中配置完整桌面模式切换';
+  return binding ? ('按 ' + formatHotkey(binding) + ' 进入 / 退出完整桌面模式') : '可在热键设置中配置完整桌面模式Режим воспроизведения';
 }
 function handleConfiguredLocalHotkey(e) {
   if (!hotkeySettings || !hotkeySettings.local || isTypingTarget(e.target)) return false;
@@ -182,7 +182,7 @@ function ensureHotkeyModal() {
     '</div>' +
     '<div class="hotkey-toolbar">' +
     '<div class="hotkey-tabs"><button type="button" data-hotkey-scope="local" class="active">局内热键</button><button type="button" data-hotkey-scope="global">全局热键</button></div>' +
-    '<div class="hotkey-note">按 Backspace / Delete 可清空当前功能热键</div>' +
+    '<div class="hotkey-note">按 Backspace / Delete 可Очистить当前功能热键</div>' +
     '</div>' +
     '<div id="hotkey-local-section" class="hotkey-section active"></div>' +
     '<div id="hotkey-global-section" class="hotkey-section"></div>' +

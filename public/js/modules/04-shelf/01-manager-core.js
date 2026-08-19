@@ -72,7 +72,7 @@ function makeShelfManager() {
         var sourceLabel = provider === 'qq' ? 'QQ' : (provider === 'kugou' ? 'KG' : (provider === 'qishui' ? 'QS' : (provider === 'spotify' ? 'SP' : 'NE')));
         if (provider === 'spotify' && String(pl.id || '').indexOf('spotify:') !== 0) pl = Object.assign({}, pl, { id: 'spotify:' + pl.id });
         return {
-          type: 'playlist', title: pl.name, sub: sourceLabel + ' · ' + (pl.trackCount || 0) + ' 首 · 播放 ' + compactCount(pl.playCount || 0),
+          type: 'playlist', title: pl.name, sub: sourceLabel + ' · ' + (pl.trackCount || 0) + ' трека · 播放 ' + compactCount(pl.playCount || 0),
           cover: pl.cover || '', tag: (pl.shelfPane || pl.shelf_pane) === 'fav' || (!(pl.shelfPane || pl.shelf_pane) && pl.subscribed) ? '收藏歌单' : (provider === 'qishui' ? '汽水歌单' : '我的歌单'), playlistId: (provider === 'qq' ? 'qq:' : (provider === 'kugou' ? 'kugou:' : (provider === 'qishui' ? 'qishui:' : ''))) + pl.id, provider: provider
         };
       });
@@ -86,8 +86,8 @@ function makeShelfManager() {
     if (playQueue.length) {
       return playQueue.map(function (song, idx) {
         return {
-          type: 'queue', title: song.name, sub: song.artist || '未知歌手',
-          cover: songCoverSrc(song, 360), tag: idx === currentIdx ? '正在播放' : ('#' + (idx + 1)), queueIndex: idx
+          type: 'queue', title: song.name, sub: song.artist || '未知Исполнитель',
+          cover: songCoverSrc(song, 360), tag: idx === currentIdx ? 'Воспроизводится' : ('#' + (idx + 1)), queueIndex: idx
         };
       });
     }
@@ -134,7 +134,7 @@ function makeShelfManager() {
     var W = cv.width, H = cv.height;
     ctx.clearRect(0, 0, W, H);
     var pad = 18;
-    var isNow = item.type === 'queue' && item.tag === '正在播放';
+    var isNow = item.type === 'queue' && item.tag === 'Воспроизводится';
     var shelfLook = shelfSettings();
 
     // 卡片底

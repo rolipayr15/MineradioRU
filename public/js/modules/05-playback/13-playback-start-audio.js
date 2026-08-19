@@ -845,7 +845,7 @@ function applyLocalTrackLyricOnDemand(song, token) {
 async function playLocalQueueSong(song, idx, token, firstVisualPlay, opts, resumeAt) {
   opts = opts || {};
   if (!song || !song.localUrl) {
-    showToast('本地文件已失效，请重新导入后继续');
+    showToast('Локально文件已失效，请重新导入后继续');
     forcePlaybackControlsInteractive();
     return false;
   }
@@ -910,8 +910,8 @@ async function playLocalQueueSong(song, idx, token, firstVisualPlay, opts, resum
       return false;
     }
     if (!opts.suppressPlayFailureNotice) {
-      if (opts.manual) showToast('播放启动失败，请重新选择本地音乐');
-      else showSourceFallbackNotice('本地音乐已载入', '点击播放器中间的播放按钮继续播放。');
+      if (opts.manual) showToast('播放启动失败，请重新ВыбратьЛокально音乐');
+      else showSourceFallbackNotice('Локально音乐已载入', '点击播放器中间的播放按钮继续播放。');
     }
     return false;
   }
@@ -1091,7 +1091,7 @@ async function playQueueAt(idx, opts) {
     safePlaybackStep('show-loading', function () { showLoading({ trackSwitch: true, seamlessCover: true }); });
     if (!qualitySwitch) lyricSunEnergy = 0; lyricSunTarget = 0; lyricSunHold = 0; lyricSunAvg = 0; lyricSunPeak = 0.55;
 
-    // 首次播放: 粒子从暗处浮出 (Apple 风格)
+    // трека次播放: 粒子从暗处浮出 (Apple 风格)
     if (firstVisualPlay) {
       safePlaybackStep('first-visual-alpha', function () {
         firstPlayDone = true;
@@ -1189,7 +1189,7 @@ async function playQueueAt(idx, opts) {
       if (!opts.startupAutoplay && !isQQPlayback && qualityDowngraded) {
         showSourceFallbackNotice((isKugouPlayback ? '酷狗' : (isQishuiPlayback ? '汽水' : '网易云')) + '音质自动降级', '请求 ' + playbackQualityLabel(requestedQuality, playbackProvider) + '，实际播放 ' + resolvedQualityText + '。');
       } else if (!opts.startupAutoplay && opts.qualitySwitch) {
-        showSourceFallbackNotice('音质已切换', '实际播放: ' + resolvedQualityText + '。');
+        showSourceFallbackNotice('音质已Режим воспроизведения', '实际播放: ' + resolvedQualityText + '。');
       }
       if (data.trial) {
         var txt;
@@ -1383,7 +1383,7 @@ async function playQueueAt(idx, opts) {
             return await skipFailedQueueItem(
               idx,
               token,
-              '当前歌曲无法启动播放，正在尝试队列里的下一首。',
+              '当前歌曲无法启动播放，正在尝试队列里的下一трека。',
               sourceFallbackRecoveryFailureOptions(retryPlaybackOpts)
             );
           }
@@ -1394,7 +1394,7 @@ async function playQueueAt(idx, opts) {
         }
         if (!opts.suppressPlayFailureNotice) {
           if (opts.manual) {
-            showToast('播放启动失败，请重新选择歌曲');
+            showToast('播放启动失败，请重新Выбрать歌曲');
           } else {
             showSourceFallbackNotice('歌曲已载入', '点击播放器中间的播放按钮继续播放。');
           }
@@ -1408,7 +1408,7 @@ async function playQueueAt(idx, opts) {
       }
       if (!opts.startupAutoplay && !opts.qualitySwitch && data && data.sourceMatch && !song.neteaseSourceMatchNotified && typeof showSourceFallbackNotice === 'function') {
         song.neteaseSourceMatchNotified = true;
-        showSourceFallbackNotice('网易云已匹配可播音源', '已在网易云内切换到同一首歌的可播版本；歌词、封面、专辑和队列仍保持原曲。');
+        showSourceFallbackNotice('网易云已匹配可播音源', '已在网易云内Режим воспроизведения到同一трека歌的可播版本；歌Текст、封面、专辑和队列仍保持原曲。');
       }
       if (albumGaplessHandoff && albumGaplessMixed && typeof rampAudioOutputGain === 'function') {
         rampAudioOutputGain(targetVolume, ALBUM_GAPLESS_ADOPT_SLEW_MS);
@@ -1470,7 +1470,7 @@ async function playQueueAt(idx, opts) {
         return await skipFailedQueueItem(
           idx,
           token,
-          '当前歌曲加载失败，正在尝试队列里的下一首。',
+          '当前歌曲加载失败，正在尝试队列里的下一трека。',
           catchRecovery ? sourceFallbackRecoveryFailureOptions(opts) : { playbackOpts: opts }
         );
       }
@@ -1495,7 +1495,7 @@ async function playQueueAt(idx, opts) {
         return await skipFailedQueueItem(
           idx,
           token,
-          '当前歌曲切换失败，正在尝试队列里的下一首。',
+          '当前歌曲Режим воспроизведения失败，正在尝试队列里的下一трека。',
           setupRecovery ? sourceFallbackRecoveryFailureOptions(opts) : { playbackOpts: opts }
         );
     }

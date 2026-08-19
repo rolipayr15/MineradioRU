@@ -131,10 +131,10 @@ var PLAYBACK_QUALITY_OPTIONS = {
     { key: 'standard', title: '128k MP3', sub: '兼容优先' }
   ],
   qishui: [
-    { key: 'standard', title: '汽水匹配源', sub: 'QS 推荐 / 播放自动换源' }
+    { key: 'standard', title: '汽水匹配源', sub: 'QS 推荐 / 播放自动Изменить源' }
   ],
   spotify: [
-    { key: 'standard', title: 'Spotify 匹配源', sub: 'SP 搜索 / 播放自动换源' }
+    { key: 'standard', title: 'Spotify 匹配源', sub: 'SP 搜索 / 播放自动Изменить源' }
   ]
 };
 var UPLOAD_TIP_STORE_KEY = 'mineradio-upload-tip-seen';
@@ -157,13 +157,13 @@ var LOCAL_BEAT_PREF_STORE_KEY = 'mineradio-local-beatmap-prefs-v1';
 var LOCAL_BEAT_COMBOS = ['', 'downbeat', 'push', 'drop', 'rebound', 'accent'];
 var HOTKEY_ACTIONS = [
   { key: 'togglePlay', label: '播放 / 暂停', category: '播放', local: 'Space', global: 'Ctrl+Alt+Space' },
-  { key: 'prevTrack', label: '上一首', category: '播放', local: 'ArrowLeft', global: 'Ctrl+Alt+ArrowLeft' },
-  { key: 'nextTrack', label: '下一首', category: '播放', local: 'ArrowRight', global: 'Ctrl+Alt+ArrowRight' },
+  { key: 'prevTrack', label: '上一трека', category: '播放', local: 'ArrowLeft', global: 'Ctrl+Alt+ArrowLeft' },
+  { key: 'nextTrack', label: '下一трека', category: '播放', local: 'ArrowRight', global: 'Ctrl+Alt+ArrowRight' },
   { key: 'volumeUp', label: '音量增加', category: '音量', local: 'ArrowUp', global: 'Ctrl+Alt+ArrowUp' },
   { key: 'volumeDown', label: '音量降低', category: '音量', local: 'ArrowDown', global: 'Ctrl+Alt+ArrowDown' },
   { key: 'toggleFullscreen', label: '全屏', category: '窗口', local: 'KeyF', global: 'Ctrl+Alt+KeyF' },
-  { key: 'toggleDesktopInteraction', label: '切换完整桌面模式', category: '窗口', local: '', global: 'Ctrl+Shift+KeyM' },
-  { key: 'toggleDesktopLyrics', label: '桌面歌词', category: '歌词', local: 'Alt+KeyL', global: 'Ctrl+Alt+KeyL' }
+  { key: 'toggleDesktopInteraction', label: 'Режим воспроизведения完整桌面模式', category: '窗口', local: '', global: 'Ctrl+Shift+KeyM' },
+  { key: 'toggleDesktopLyrics', label: '桌面歌Текст', category: '歌Текст', local: 'Alt+KeyL', global: 'Ctrl+Alt+KeyL' }
 ];
 var hotkeyCaptureState = null;
 var hotkeyGlobalStatus = {};

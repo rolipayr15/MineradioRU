@@ -2605,7 +2605,7 @@ async function handleQishuiUserPlaylists(cookieText) {
         playlists.push(pl);
       });
       if (recentTracks.length) {
-        playlists.push(buildQishuiVirtualPlaylist(QISHUI_WEB_RECENT_PLAYLIST_ID, '汽水最近播放', recentTracks, {
+        playlists.push(buildQishuiVirtualPlaylist(QISHUI_WEB_RECENT_PLAYLIST_ID, '汽水Недавно воспроизведённые', recentTracks, {
           subscribed: false,
           shelfPane: 'mine',
           owned: true,
@@ -2740,7 +2740,7 @@ async function handleQishuiPlaylistTracks(playlistId, opts, cookieText) {
       const library = await fetchQishuiWebLibrary(cookieText);
       const allSongs = library.recentTracks || [];
       const tracks = allSongs.slice(offset, offset + limit);
-      const playlist = buildQishuiVirtualPlaylist(QISHUI_WEB_RECENT_PLAYLIST_ID, '汽水最近播放', allSongs, {
+      const playlist = buildQishuiVirtualPlaylist(QISHUI_WEB_RECENT_PLAYLIST_ID, '汽水Недавно воспроизведённые', allSongs, {
         subscribed: false,
         shelfPane: 'mine',
         owned: true,

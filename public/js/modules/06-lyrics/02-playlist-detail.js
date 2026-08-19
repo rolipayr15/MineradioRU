@@ -162,7 +162,7 @@ function playlistPanelDetailRowsHtml(options) {
   var st = playlistPanelDetailState;
   var tracks = st.tracks || [];
   if (st.loading && !tracks.length) {
-    return '<div class="pl-detail-row pl-detail-loading-row"><span class="queue-hydration-spinner spinning"></span><div style="flex:1;min-width:0"><div class="pl-detail-row-title">正在载入首批歌曲</div><div class="pl-detail-row-artist">首批完成后即可浏览和播放</div></div></div>';
+    return '<div class="pl-detail-row pl-detail-loading-row"><span class="queue-hydration-spinner spinning"></span><div style="flex:1;min-width:0"><div class="pl-detail-row-title">正在载入трека批歌曲</div><div class="pl-detail-row-artist">трека批完成后即可浏览和播放</div></div></div>';
   }
   if (!tracks.length) return playlistPanelNoticeHtml(st.message || st.error || '', !!st.error);
   var viewport = Math.max(280, Number(options.viewport) || Math.min(620, Math.round((window.innerHeight || 800) * 0.72)));
@@ -180,7 +180,7 @@ function playlistPanelDetailRowsHtml(options) {
     return '<div class="pl-detail-row" data-pl-detail-row="' + i + '">' +
       imgTag +
       '<div style="flex:1;min-width:0"><div class="pl-detail-row-title">' + escHtml(song.name || '') + '</div>' +
-      '<button type="button" class="pl-detail-row-artist" data-pl-detail-artist="' + i + '">' + escHtml(song.artist || '未知歌手') + '</button></div>' +
+      '<button type="button" class="pl-detail-row-artist" data-pl-detail-artist="' + i + '">' + escHtml(song.artist || '未知Исполнитель') + '</button></div>' +
       '</div>';
   }).join('');
   rows += '<div class="pl-detail-virtual-spacer" aria-hidden="true" style="height:' + (Math.max(0, tracks.length - end) * PLAYLIST_DETAIL_ROW_STEP) + 'px"></div>';
@@ -190,7 +190,7 @@ function playlistPanelDetailRowsHtml(options) {
     rows += '<div class="pl-detail-progress"><span class="queue-hydration-spinner' + (st.loadingMore ? ' spinning' : '') + '"></span><span>' +
       (st.loadingMore ? '正在预载后续歌曲 ' : '继续滚动加载 ') + tracks.length + (st.total ? '/' + st.total : '') + '</span></div>';
   } else if (tracks.length > PLAYLIST_DETAIL_INITIAL_RENDER) {
-    rows += '<div class="pl-detail-progress">已加载全部 ' + tracks.length + ' 首</div>';
+    rows += '<div class="pl-detail-progress">已加载全部 ' + tracks.length + ' трека</div>';
   }
   return rows;
 }
@@ -283,7 +283,7 @@ function playlistPanelDetailHtml(pl, provider, detailWindow) {
     : '';
   return '<div class="pl-inline-detail" data-pl-detail="' + escHtml(key) + '" style="height:' + playlistPanelDetailShellHeight() + 'px">' +
     '<div class="pl-detail-sticky">' +
-    '<div class="pl-detail-head">' + img + '<div style="flex:1;min-width:0"><div class="pl-detail-title">' + escHtml(pl.name || '歌单详情') + '</div><div class="pl-detail-sub">' + escHtml((expectedTotal || tracks.length || 0) + ' 首 · ' + (pl.creator || playlistProviderName(provider))) + '</div></div><div class="pl-detail-count">' + (loading && !tracks.length ? '载入中' : (tracks.length + (expectedTotal > tracks.length ? '/' + expectedTotal : ''))) + '</div></div>' +
+    '<div class="pl-detail-head">' + img + '<div style="flex:1;min-width:0"><div class="pl-detail-title">' + escHtml(pl.name || '歌单详情') + '</div><div class="pl-detail-sub">' + escHtml((expectedTotal || tracks.length || 0) + ' трека · ' + (pl.creator || playlistProviderName(provider))) + '</div></div><div class="pl-detail-count">' + (loading && !tracks.length ? '载入中' : (tracks.length + (expectedTotal > tracks.length ? '/' + expectedTotal : ''))) + '</div></div>' +
     '<div class="pl-detail-actions"><button class="pl-detail-play" type="button" data-pl-detail-play="' + escHtml(key) + '"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>播放歌单</button>' + collectionButton + '<button class="fx-mini-btn ghost pl-detail-top-btn" type="button" data-pl-detail-top="1">回到顶部</button></div>' +
     '</div>' +
     '<div class="pl-detail-list" data-pl-detail-scroll="' + escHtml(key) + '">' + rows + '</div>' +
@@ -648,7 +648,7 @@ function renderUserPlaylistsList(opts) {
     var expanded = isExpanded ? ' expanded' : '';
     return '<div class="pl-card' + expanded + '" aria-expanded="' + (isExpanded ? 'true' : 'false') + '" data-playlist-provider="' + provider + '" data-playlist-id="' + escHtml(String(pl.id || '')) + '" data-playlist-title="' + escHtml(pl.name || '') + '" data-playlist-index="' + sourceIndex + '">' +
       imgTag +
-      '<div style="flex:1;min-width:0"><div class="pl-name">' + escHtml(pl.name) + '<span class="tag-source ' + provider + '" style="margin-left:6px;vertical-align:1px">' + providerLabel + '</span></div><div class="pl-sub">' + pl.trackCount + ' 首 · ' + escHtml(pl.creator || '') + '</div></div>' +
+      '<div style="flex:1;min-width:0"><div class="pl-name">' + escHtml(pl.name) + '<span class="tag-source ' + provider + '" style="margin-left:6px;vertical-align:1px">' + providerLabel + '</span></div><div class="pl-sub">' + pl.trackCount + ' трека · ' + escHtml(pl.creator || '') + '</div></div>' +
       '</div>';
   }
   var cache = playlistPanelBuildVirtualEntries();

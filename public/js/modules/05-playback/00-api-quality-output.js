@@ -303,7 +303,7 @@ function applyPlaybackQualityToCurrentTrack(nextQuality, provider) {
     return;
   }
   var resumeAt = audio && isFinite(audio.currentTime) ? audio.currentTime : 0;
-  showToast('正在切换音质: ' + label);
+  showToast('正在Режим воспроизведения音质: ' + label);
   Promise.resolve(playQueueAt(currentIdx, {
     qualityOverride: nextQuality || getProviderPlaybackQuality(provider),
     qualitySwitch: true,
@@ -311,7 +311,7 @@ function applyPlaybackQualityToCurrentTrack(nextQuality, provider) {
     preserveHomeState: true,
   })).catch(function (e) {
     console.warn('[QualitySwitch]', e);
-    showToast('音质切换失败，已保留偏好');
+    showToast('音质Режим воспроизведения失败，已保留偏好');
   }).finally(forcePlaybackControlsInteractive);
 }
 function toggleQualityPanel(e) {
@@ -510,7 +510,7 @@ function audioOutputMirrorReadableError(e) {
   var name = e && e.name ? String(e.name) : '';
   if (name === 'NotAllowedError') return '没有输出权限';
   if (name === 'NotFoundError') return '设备不可用';
-  if (name === 'AbortError') return '切换失败';
+  if (name === 'AbortError') return 'Режим воспроизведения失败';
   if (name === 'NotSupportedError') return '内核不支持';
   return '播放失败';
 }
@@ -559,7 +559,7 @@ function audioOutputMirrorStatusText(id, active, disabled) {
   if (rt.state === 'sink-ready') return '设备已选，等待播放';
   if (rt.state === 'sink-pending' || rt.state === 'play-pending') return '正在尝试镜像监听';
   if (rt.state === 'waiting') return '待播放时尝试镜像';
-  if (rt.state === 'sink-error' || rt.state === 'play-error' || rt.state === 'unsupported') return '镜像失败：' + (rt.message || '请换接口');
+  if (rt.state === 'sink-error' || rt.state === 'play-error' || rt.state === 'unsupported') return '镜像失败：' + (rt.message || '请Изменить接口');
   return '待确认镜像监听';
 }
 function readAudioInputBridgePreference() {
@@ -692,7 +692,7 @@ function renderAudioOutputDeviceUi() {
             '<div class="route-node-grid bridge-grid"><button class="audio-route-node bridge workflow-node' + (bridgeEnabled ? ' active connected' : '') + (!bridgeId ? ' disabled' : '') + '" type="button" data-input-bridge="' + escHtml(bridgeId) + '">' +
               '<span class="flow-port in" data-input-bridge-target="' + escHtml(bridgeId) + '" title="虚拟麦克风输入"></span><span class="route-node-icon">MIC</span><span class="route-node-text"><b>' + escHtml(bridgeLabel) + '</b><small>' + escHtml(bridgeEnabled ? '已送入虚拟输入链路' : (bridgeId ? '可接入虚拟输入链路' : '需要虚拟声卡线缆')) + '</small></span><span class="route-node-pulse"></span>' +
             '</button></div>' +
-            '<div class="audio-route-note">' + escHtml(inputHint ? ('输入端: ' + inputHint) : '真实麦克风不能被直接写入；请在游戏或语音软件里选择虚拟声卡的输入端。') + '</div>' +
+            '<div class="audio-route-note">' + escHtml(inputHint ? ('输入端: ' + inputHint) : '真实麦克风不能被直接写入；请在游戏或语音软件里Выбрать虚拟声卡的输入端。') + '</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -731,7 +731,7 @@ async function refreshAudioOutputDevices(showNotice) {
     audioOutputDevices = [];
     audioInputDevices = [];
     renderAudioOutputDeviceUi();
-    if (showNotice) showToast('当前环境不支持输出接口选择');
+    if (showNotice) showToast('当前环境不支持输出接口Выбрать');
     return;
   }
   try {
@@ -780,7 +780,7 @@ async function applyAudioOutputMirrorSink(mirror, sinkId) {
     return false;
   }
   try {
-    markAudioOutputMirrorRuntime(sinkId, 'sink-pending', '正在选择设备');
+    markAudioOutputMirrorRuntime(sinkId, 'sink-pending', '正在Выбрать设备');
     await mirror.setSinkId(sinkId);
     markAudioOutputMirrorRuntime(sinkId, 'sink-ready', '设备已选');
     return true;
@@ -850,7 +850,7 @@ function syncAudioOutputMirrors(reason) {
       markAudioOutputMirrorRuntime(id, 'paused', '随主播放器暂停');
     } else {
       var rt = audioOutputMirrorRuntimeFor(id);
-      if (!rt || rt.state !== 'playing') markAudioOutputMirrorRuntime(id, 'play-pending', '正在播放');
+      if (!rt || rt.state !== 'playing') markAudioOutputMirrorRuntime(id, 'play-pending', 'Воспроизводится');
       var p = mirror.play();
       if (p && p.then) {
         p.then(function () {
@@ -928,10 +928,10 @@ function setAudioOutputDevice(deviceId, showNotice) {
   Promise.resolve(applyAudioOutputDevice(audio)).then(function (ok) {
     if (!showNotice) return;
     if (!requestedDeviceId) showToast('已切回系统默认输出');
-    else if (ok === true) showToast('输出接口已切换');
+    else if (ok === true) showToast('输出接口已Режим воспроизведения');
     else if (ok === null) showToast('输出接口已保存，播放时自动启用');
-    else if (audioReady && audioCtx && typeof audioCtx.setSinkId !== 'function') showToast('当前内核不支持频谱输出实时切换，已保存选择');
-    else showToast('当前输出接口暂不可用，已保存选择');
+    else if (audioReady && audioCtx && typeof audioCtx.setSinkId !== 'function') showToast('当前内核不支持频谱输出实时Режим воспроизведения，已保存Выбрать');
+    else showToast('当前输出接口暂不可用，已保存Выбрать');
   });
 }
 function toggleAudioOutputMirrorDevice(deviceId) {

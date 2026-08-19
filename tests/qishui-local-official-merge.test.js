@@ -44,7 +44,7 @@ function pcSearchTrack(id, name) {
         track: {
           base_info: { id, name, duration_ms: 180000 },
           related_info: {
-            artist_links: [{ id: 'artist-fixture', name: '测试歌手' }],
+            artist_links: [{ id: 'artist-fixture', name: '测试Исполнитель' }],
           },
         },
       },
@@ -58,13 +58,13 @@ async function testPcSearchAndPublicFallback() {
     const parsed = new URL(url);
     if (parsed.hostname === 'api.qishui.com' && parsed.pathname === '/luna/pc/search/track') {
       assert.strictEqual(options.method || 'GET', 'GET');
-      assert.strictEqual(parsed.searchParams.get('q'), '本地搜索测试');
+      assert.strictEqual(parsed.searchParams.get('q'), 'Локально搜索测试');
       assert.strictEqual(parsed.searchParams.get('cursor'), '0');
       assert(/sessionid=fixture-session/.test(String(options.headers && options.headers.Cookie || '')));
       return {
         body: {
           data: {
-            result_groups: [{ data: [pcSearchTrack('pc-search-1', '本地搜索测试')] }],
+            result_groups: [{ data: [pcSearchTrack('pc-search-1', 'Локально搜索测试')] }],
             has_more: false,
           },
         },
@@ -72,7 +72,7 @@ async function testPcSearchAndPublicFallback() {
     }
     throw new Error('Unexpected request: ' + parsed.hostname + parsed.pathname);
   }, async () => {
-    const result = await qishui.handleQishuiSearch('本地搜索测试', 8, cookie, 0);
+    const result = await qishui.handleQishuiSearch('Локально搜索测试', 8, cookie, 0);
     assert.strictEqual(result.source, 'qishui-pc-search');
     assert.strictEqual(result.webSession, true);
     assert.strictEqual(result.songs.length, 1);
@@ -91,8 +91,8 @@ async function testPcSearchAndPublicFallback() {
           data: {
             list: [{
               item_id: 'public-fallback-1',
-              title: '本地失败回退测试',
-              author_info: { id: 'artist-fixture', name: '测试歌手' },
+              title: 'Локально失败回退测试',
+              author_info: { id: 'artist-fixture', name: '测试Исполнитель' },
             }],
           },
         },
@@ -100,7 +100,7 @@ async function testPcSearchAndPublicFallback() {
     }
     throw new Error('Unexpected request: ' + parsed.hostname + parsed.pathname);
   }, async () => {
-    const result = await qishui.handleQishuiSearch('本地失败回退测试', 8, cookie, 0);
+    const result = await qishui.handleQishuiSearch('Локально失败回退测试', 8, cookie, 0);
     assert.strictEqual(result.publicCatalog, true);
     assert.strictEqual(result.songs[0].id, 'public-fallback-1');
     assert(result.pcSearchError, 'PC search failure must be retained as diagnostic context');
@@ -215,7 +215,7 @@ async function testLyricFallbackAndConversion() {
           data: {
             track: {
               lyric_info: {
-                lyric_entity: { content: '[3000,1000]<0,1000,0>回退歌词' },
+                lyric_entity: { content: '[3000,1000]<0,1000,0>回退歌Текст' },
               },
             },
           },
@@ -226,8 +226,8 @@ async function testLyricFallbackAndConversion() {
   }, async () => {
     const result = await qishui.handleQishuiLyric('lyric-track-fixture', 'sessionid=fixture-session');
     assert.strictEqual(result.source, 'qishui-pc-track-v2');
-    assert.strictEqual(result.lyric, '[00:03.00]回退歌词');
-    assert.strictEqual(result.yrc, '[3000,1000](3000,1000,0)回退歌词');
+    assert.strictEqual(result.lyric, '[00:03.00]回退歌Текст');
+    assert.strictEqual(result.yrc, '[3000,1000](3000,1000,0)回退歌Текст');
   });
 }
 

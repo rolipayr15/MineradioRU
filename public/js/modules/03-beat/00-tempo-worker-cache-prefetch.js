@@ -128,7 +128,7 @@ function getMusicTempoWorkerUrl() {
 async function analyzeMusicTempoInWorker(buffer, token) {
   if (typeof Worker === 'undefined' || typeof Blob === 'undefined' || typeof URL === 'undefined') return null;
   try {
-    showBeatChip('后台锁定电影主拍…');
+    showBeatChip('Определение основного ритма в фоновом режиме…');
     await yieldToIdle(isHiddenForBackgroundOptimization() ? 20 : 180);
     if (token !== beatMapToken) return null;
     var channels = buffer.numberOfChannels;

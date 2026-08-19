@@ -33,19 +33,6 @@ var homePlatformRecommendationState = {
   },
 };
 
-function openMineradioCommunity(repository) {
-  if (window.desktopWindow && typeof window.desktopWindow.openCommunityPage === 'function') {
-    window.desktopWindow.openCommunityPage(repository);
-    return;
-  }
-  var targets = {
-    main: 'https://github.com/XxHuberrr/Mineradio',
-    ru: 'https://github.com/rolipayr15/MineradioRU',
-  };
-  var target = targets[String(repository || '').trim()];
-  if (target) window.open(target, '_blank', 'noopener,noreferrer');
-}
-
 var HOME_DASHBOARD_REVIEW_DEFAULTS = [
   { text: 'Дело не в том, что песня вдруг стала хорошей, просто ты наконец-то понял её смысл.', source: 'Популярные отзывы' },
   { text: 'Неважно, насколько медленно ты двигаешься, главное — ты идёшь к жизни, которую любишь.', source: 'Популярные отзывы' },
@@ -320,7 +307,7 @@ function homeDashboardRenderVideoActions() {
   var hasVideo = !!homeDashboardReadVideoMeta();
   var choose = document.getElementById('home-dashboard-video-choose');
   var clear = document.getElementById('home-dashboard-video-clear');
-  if (choose) choose.textContent = hasVideo ? '更Изменить MP4' : 'Выбрать MP4';
+  if (choose) choose.textContent = hasVideo ? 'Ещё MP4' : 'Выбрать MP4';
   if (clear) clear.hidden = !hasVideo;
 }
 
@@ -561,7 +548,7 @@ function renderHomeDashboardQuickCards() {
     {
       label: 'CONTINUE',
       title: continueItem && (continueItem.name || continueItem.title) || '开始听歌',
-      sub: continueItem ? (homeDashboardSubtitle(continueItem) || recent && (recent.artist || recent.source) || 'Продолжить текущую очередь') : '从Медиатека或Ежедневные рекомендации开始',
+      sub: continueItem ? (homeDashboardSubtitle(continueItem) || recent && (recent.artist || recent.source) || '继续当前队列') : '从Медиатека或Ежедневные рекомендации开始',
       cover: homeDashboardSongCover(current, 360) || recent && recent.cover || '',
       action: 'resumeHomeDashboardPlayback()',
       tone: 'search',
@@ -579,7 +566,7 @@ function renderHomeDashboardQuickCards() {
     {
       label: 'DAILY MIX',
       title: 'Ежедневные рекомендации',
-      sub: daily ? ((daily.name || daily.title || 'Треков сегодня') + (homeDashboardSubtitle(daily) ? ' · ' + homeDashboardSubtitle(daily) : '')) : 'Рекомендации Mineradio',
+      sub: daily ? ((daily.name || daily.title || 'Треков сегодня') + (homeDashboardSubtitle(daily) ? ' · ' + homeDashboardSubtitle(daily) : '')) : 'Рекомендации MineRadio',
       cover: homeDashboardSongCover(daily, 260),
       action: 'playHomeDaily()',
       tone: 'mix',
@@ -808,7 +795,7 @@ function renderHomeInsightDock() {
   if (time) time.textContent = homeDashboardListenDurationText(metrics.listenMs);
   if (count) count.textContent = metrics.songCount + ' трека';
   if (artist) artist.textContent = metrics.topArtist || '等待记录';
-  if (streak) streak.textContent = metrics.streak ? ('Слушает ' + metrics.streak + '   дня подряд') : 'Создается после начала воспроизведения';
+  if (streak) streak.textContent = metrics.streak ? ('ССлушает 2 дня подряд ' + metrics.streak + '   дня подряд') : 'Создается после начала воспроизведения';
 
   var next = homeDashboardNextQueueInfo();
   var song = next.song;

@@ -313,7 +313,7 @@ coverEdgeTex.minFilter = THREE.LinearFilter; coverEdgeTex.magFilter = THREE.Line
   coverEdgeTex.image = d; coverEdgeTex.needsUpdate = true;
 })();
 
-// 前一首封面纹理 (用于切歌渐变)
+// 前一трека封面纹理 (用于切歌渐变)
 var prevCoverTex = new THREE.Texture();
 prevCoverTex.minFilter = THREE.LinearFilter; prevCoverTex.magFilter = THREE.LinearFilter;
 (function () {
@@ -329,7 +329,7 @@ var uniforms = {
   uTreble: { value: 0 },
   uBeat: { value: 0 },
   uEnergy: { value: 0 },
-  uBurstAmt: { value: 0 },          // 通用预设切换脉冲 0..1
+  uBurstAmt: { value: 0 },          // 通用预设Режим воспроизведения脉冲 0..1
   uVinylSpin: { value: 0 },
   uPreset: { value: 0 },
   uIntensity: { value: 0.85 },

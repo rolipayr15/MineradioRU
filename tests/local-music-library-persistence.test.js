@@ -73,7 +73,7 @@ function minimalTaggedFlac() {
   streamInfo.writeBigUInt64BE(packed, 10);
   const comments = vorbisCommentBlock([
     'TITLE=标签标题',
-    'ARTIST=标签歌手',
+    'ARTIST=标签Исполнитель',
     'ALBUM=标签专辑',
   ]);
   const picture = pictureBlock(ONE_PIXEL_PNG);
@@ -107,7 +107,7 @@ test('FLAC tags, embedded cover and same-name LRC survive a full library reload'
   assert.equal(imported.ok, true);
   assert.equal(imported.count, 1);
   assert.equal(imported.tracks[0].name, '标签标题');
-  assert.equal(imported.tracks[0].artist, '标签歌手');
+  assert.equal(imported.tracks[0].artist, '标签Исполнитель');
   assert.equal(imported.tracks[0].album, '标签专辑');
   assert.match(imported.tracks[0].cover, /^mineradio-local:\/\/cover\/[a-f0-9]{24}/);
   assert.match(imported.tracks[0].localUrl, /^mineradio-local:\/\/audio\/[a-f0-9]{24}/);

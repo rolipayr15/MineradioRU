@@ -105,8 +105,8 @@ function restoreLastPlaybackSnapshot() {
     updateControlTrackInfo(shownSong);
     var titleEl = document.getElementById('thumb-title');
     var artistEl = document.getElementById('thumb-artist');
-    if (titleEl) titleEl.textContent = shownSong.name || shownSong.title || '上一首';
-    if (artistEl) artistEl.textContent = isLocal ? '本地文件 · 需要重新导入' : (shownSong.artist || songSourceLabel(shownSong));
+    if (titleEl) titleEl.textContent = shownSong.name || shownSong.title || '上一трека';
+    if (artistEl) artistEl.textContent = isLocal ? 'Локально文件 · 需要重新导入' : (shownSong.artist || songSourceLabel(shownSong));
     var thumbWrap = document.getElementById('thumb-wrap');
     if (thumbWrap) thumbWrap.classList.add('visible');
     if (!isLocal && shownSong.cover) {

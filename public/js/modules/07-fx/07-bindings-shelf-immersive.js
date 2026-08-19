@@ -163,7 +163,7 @@ function bindFxPanel() {
     lyricPicker.addEventListener('input', function () { setLyricColorCustom(lyricPicker.value, true); });
     lyricPicker.addEventListener('change', function () {
       setLyricColorCustom(lyricPicker.value, true);
-      showToast('歌词颜色: ' + normalizeHexColor(lyricPicker.value).toUpperCase());
+      showToast('歌Текст颜色: ' + normalizeHexColor(lyricPicker.value).toUpperCase());
     });
   }
   var lyricHighlightPicker = document.getElementById('lyric-highlight-picker');
@@ -341,7 +341,7 @@ function bindFxPanel() {
       updateDesktopLyricsFpsControls();
       saveLyricLayout({ user: true, reason: 'desktopLyricsFps' });
       pushDesktopLyricsState(true);
-      showToast(fx.desktopLyricsFps ? ('桌面歌词帧数 ' + fx.desktopLyricsFps) : '桌面歌词帧数无上限');
+      showToast(fx.desktopLyricsFps ? ('桌面歌Текст帧数 ' + fx.desktopLyricsFps) : '桌面歌Текст帧数无上限');
     });
   });
   document.querySelectorAll('#wallpaper-fps-seg [data-wallpaper-fps]').forEach(function (btn) {
@@ -439,15 +439,15 @@ function toggleFx(key) {
     if (typeof updateMemoryControls === 'function') updateMemoryControls();
     if (typeof configureMemoryReductFromFx === 'function') configureMemoryReductFromFx('toggle', key === 'memoryAutoSystemTrim' && fx.memoryAutoSystemTrim);
   }
-  if (key === 'lyricGlow') showToast(fx.lyricGlow ? '歌词溢光已开启' : '歌词溢光已关闭');
-  if (key === 'lyricGlowBeat') showToast(fx.lyricGlowBeat ? '歌词溢光跟随鼓点' : '歌词溢光已脱离鼓点');
-  if (key === 'lyricGlowParticles') showToast(fx.lyricGlowParticles ? '歌词光粒已开启' : '歌词光粒已关闭');
-  if (key === 'lyricVerticalFloat') showToast(fx.lyricVerticalFloat !== false ? '歌词上下浮动已开启' : '歌词上下浮动已关闭');
-  if (key === 'lyricPauseHold') showToast(fx.lyricPauseHold !== false ? '暂停时保留歌词' : '暂停时隐藏歌词');
-  if (key === 'desktopLyrics') showToast(fx.desktopLyrics ? '桌面歌词已开启' : '桌面歌词已关闭');
-  if (key === 'desktopLyricsClickThrough') showToast(fx.desktopLyricsClickThrough !== false ? '桌面歌词已锁定' : '桌面歌词可移动');
-  if (key === 'desktopLyricsCinema') showToast(fx.desktopLyricsCinema !== false ? '桌面歌词电影震动已开启' : '桌面歌词电影震动已关闭，基础漂浮保留');
-  if (key === 'desktopLyricsHighlight') showToast(fx.desktopLyricsHighlight === true ? '桌面歌词高亮跟随已开启' : '桌面歌词高亮跟随已关闭');
+  if (key === 'lyricGlow') showToast(fx.lyricGlow ? '歌Текст溢光已开启' : '歌Текст溢光已关闭');
+  if (key === 'lyricGlowBeat') showToast(fx.lyricGlowBeat ? '歌Текст溢光跟随鼓点' : '歌Текст溢光已脱离鼓点');
+  if (key === 'lyricGlowParticles') showToast(fx.lyricGlowParticles ? '歌Текст光粒已开启' : '歌Текст光粒已关闭');
+  if (key === 'lyricVerticalFloat') showToast(fx.lyricVerticalFloat !== false ? '歌Текст上下浮动已开启' : '歌Текст上下浮动已关闭');
+  if (key === 'lyricPauseHold') showToast(fx.lyricPauseHold !== false ? '暂停时保留歌Текст' : '暂停时隐藏歌Текст');
+  if (key === 'desktopLyrics') showToast(fx.desktopLyrics ? '桌面歌Текст已开启' : '桌面歌Текст已关闭');
+  if (key === 'desktopLyricsClickThrough') showToast(fx.desktopLyricsClickThrough !== false ? '桌面歌Текст已锁定' : '桌面歌Текст可移动');
+  if (key === 'desktopLyricsCinema') showToast(fx.desktopLyricsCinema !== false ? '桌面歌Текст电影震动已开启' : '桌面歌Текст电影震动已关闭，基础漂浮保留');
+  if (key === 'desktopLyricsHighlight') showToast(fx.desktopLyricsHighlight === true ? '桌面歌Текст高亮跟随已开启' : '桌面歌Текст高亮跟随已关闭');
   if (key === 'wallpaperMode') showToast(fx.wallpaperMode ? '壁纸模式已开启' : '壁纸模式已关闭');
   if (key === 'shelfShowPodcasts') showToast(fx.shelfShowPodcasts !== false ? '3D歌单架已显示播客歌单' : '3D歌单架已隐藏播客歌单');
   if (key === 'shelfMergeCollections') showToast(fx.shelfMergeCollections === true ? '我的歌单与收藏歌单已合并滚动' : '收藏歌单恢复滚到底切页');
@@ -456,7 +456,7 @@ function toggleFx(key) {
   if (key === 'memoryAutoTrimOnBackground') showToast(fx.memoryAutoTrimOnBackground ? '最小化后台会自动压缩' : '后台自动压缩已关闭');
   if (key === 'memoryAutoSystemTrim') showToast(fx.memoryAutoSystemTrim ? '系统级 Mem Reduct 已开启' : '系统级 Mem Reduct 已关闭');
   if (key === 'memorySystemAutoElevate') showToast(fx.memorySystemAutoElevate ? '系统释放允许请求管理员权限' : '系统释放不再自动提权');
-  if (key === 'lyricCameraLock') showToast(fx.lyricCameraLock ? '歌词已绑定镜头' : '歌词已恢复自由漂浮');
+  if (key === 'lyricCameraLock') showToast(fx.lyricCameraLock ? '歌Текст已绑定镜头' : '歌Текст已恢复自由漂浮');
   if (key === 'bloom') showToast(fx.bloom ? '溢光已开启' : '溢光已关闭');
   if (key === 'edge') showToast(fx.edge ? '已开启轮廓高亮' : '已关闭轮廓高亮');
   if (key === 'cinema') showToast(fx.cinema ? '已开启电影镜头' : '已关闭电影镜头');

@@ -235,7 +235,7 @@ async function loadPlaylistIntoQueueById(id, autoplay, title, opts) {
     }
   } catch (e) {
     console.warn('[PlaylistLoadFirstPage]', id, e);
-    showToast('歌单首批加载失败');
+    showToast('歌单трека批加载失败');
     hideLoading();
     return false;
   }

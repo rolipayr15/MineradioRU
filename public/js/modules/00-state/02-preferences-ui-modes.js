@@ -127,7 +127,7 @@ function setStartupResumeModePreference(value, opts) {
   saveStartupResumeModePreference(startupResumeModePreference);
   syncStartupResumeModeUi();
   applyStartupResumeModeToRestoredSnapshot();
-  if (opts.toast) showToast(startupResumeModePreference === 'restart' ? '恢复播放将重播整首' : '恢复播放将按上次进度继续');
+  if (opts.toast) showToast(startupResumeModePreference === 'restart' ? '恢复播放将重播整трека' : '恢复播放将按上次进度继续');
 }
 function bindStartupResumeModeControls() {
   var seg = document.getElementById('startup-resume-mode-seg');
@@ -304,7 +304,7 @@ function applyDiyMode(on, opts) {
     if (quality) quality.classList.remove('open');
     if (volume) volume.classList.remove('open');
   }
-  if (opts.toast) showToast(diyPlayerMode ? 'DIY 玩家模式已开启' : '已切回简约模式');
+  if (opts.toast) showToast(diyPlayerMode ? 'Режим кастомизации включен' : 'Переключено в минималистичный режим');
   if (opts.animate && window.gsap) {
     ['diy-mode-btn', 'fullscreen-diy-btn'].forEach(function (id) {
       var btn = document.getElementById(id);

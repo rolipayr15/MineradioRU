@@ -86,7 +86,7 @@ function auditProviderVipState(provider, status) {
   var sameUser = providerVipAuditSameUser(previous, current);
   if (previous && sameUser && previous.loggedIn && previous.isVip && current.loggedIn && !current.isVip) {
     var title = providerVipAuditLabel(provider, previous) + ' 状态掉了';
-    var body = '本次启动复验时已变为普通账号，会员曲目可能只能试听或需要换源。';
+    var body = '本次启动复验时已变为普通账号，会员曲目可能只能试听或需要Изменить源。';
     if (typeof showSourceFallbackNotice === 'function') showSourceFallbackNotice(title, body);
     else showToast(title);
   }

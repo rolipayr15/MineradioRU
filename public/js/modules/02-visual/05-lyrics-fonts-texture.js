@@ -155,7 +155,7 @@ function warmLyricTextMeasureCache() {
   var ctx = canvas.getContext('2d');
   if (!ctx) return;
   ctx.font = lyricFontCss(128);
-  measureTextWithLetterSpacing(ctx, '歌词 Lyrics 0123456789', lyricLetterSpacingPx(128));
+  measureTextWithLetterSpacing(ctx, '歌Текст Lyrics 0123456789', lyricLetterSpacingPx(128));
 }
 function scheduleLyricTextMeasureWarmup(delay) {
   if (lyricTextMeasureWarmupTimer) clearTimeout(lyricTextMeasureWarmupTimer);

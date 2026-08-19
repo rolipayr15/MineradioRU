@@ -3476,6 +3476,38 @@ body.empty-home-active.controls-visible #empty-home {
   background: rgba(255, 255, 255, .04)
 }
 
+.community-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: rgba(255, 255, 255, .68);
+  border: 1px solid rgba(255, 255, 255, .10);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .04);
+  cursor: pointer;
+}
+
+.community-link-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.community-link-btn span {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.community-link-btn:hover {
+  color: #fff;
+  border-color: rgba(0, 245, 212, .42);
+  background: rgba(0, 245, 212, .10);
+}
+
 #visual-guide-btn:hover {
   color: #fff;
   border-color: rgba(255, 83, 103, .40);
@@ -15979,7 +16011,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover {
 }
 
 /* ============================================================ */
-/*  舞台歌词 (大字 + 3D 入场 + 呼吸)                              */
+/*  舞台歌Текст (大字 + 3D 入场 + 呼吸)                              */
 /* ============================================================ */
 #stage-lyrics {
   display: none

@@ -65,8 +65,8 @@ function updateUserModalUi() {
     (activeAccountProvider === 'qishui' ? '清除汽水登录态' :
     (activeAccountProvider === 'spotify' ? '退出 Spotify' : '退出网易云')));
   if (hint) hint.textContent = dualAccountMode
-    ? '右上角已切换为多平台并排展示。'
-    : '可切换右上角展示的平台；“我两个都要”会并排显示当前已登录的平台。';
+    ? '右上角已Режим воспроизведения为多平台并排展示。'
+    : '可Режим воспроизведения右上角展示的平台；“我两个都要”会并排显示当前已登录的平台。';
 }
 function showUserModal() {
   if (!hasAnyPlatformLogin()) return showLoginModal();

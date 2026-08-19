@@ -120,7 +120,7 @@ function makeContentListManager() {
     var isLoading = allTracks.length === 1 && isLoadingLabel(allTracks[0] && allTracks[0].name);
     var countLabel = contentKind === 'podcast'
       ? (contentCount ? (contentCount + ' 项播客内容') : (isLoading ? '正在载入' : '暂无播客内容'))
-      : (playableCount ? (playableCount + ' 首歌曲') : (isLoading ? '正在载入' : '暂无可播放歌曲'));
+      : (playableCount ? (playableCount + ' трека歌曲') : (isLoading ? '正在载入' : '暂无可播放歌曲'));
     if (contentKind !== 'podcast' && contentTotalCount && contentTotalCount > playableCount) {
       countLabel = playableCount + '/' + contentTotalCount + (contentLoadingMore ? ' loading' : ' loaded');
     }
@@ -1025,7 +1025,7 @@ function makeContentListManager() {
       return null;
     },
     playRow: function (row) {
-      // 把整个歌单导入队列, 从这首开始播
+      // 把整个歌单导入队列, 从这трека开始播
       pulseObjectValue(row, 'fxPulse', 1.0, 0.34);
       var idx = row.index;
       if (idx < 0) return;

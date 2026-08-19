@@ -261,7 +261,7 @@ function getSpotifyConfig() {
   const tokenConfigured = !!(token.accessToken || token.refreshToken);
   const localConfigMissing = !tokenConfigured && !oauth.clientId && !credentialsFileExists;
   const spotifyConfigMessage = clientCredentialsConfigured || tokenConfigured
-    ? 'Spotify Web API 已接入；播放仍会按匹配源自动换源。'
+    ? 'Spotify Web API 已接入；播放仍会按匹配源自动Изменить源。'
     : (localConfigMissing
       ? 'Spotify 未连接：请先粘贴一次 Client ID 保存配置，再打开官方 OAuth 授权。'
       : 'Spotify 已保存 Client ID，可直接打开官方 OAuth 授权；桌面端使用 PKCE，不保存 Client Secret。');
@@ -880,8 +880,8 @@ async function handleSpotifyStatus() {
     accountWriteReady: loggedIn && missingWriteScopes.length === 0,
     message: loggedIn
       ? (missingWriteScopes.length
-        ? 'Spotify 已连接；重新授权一次后可写入喜欢和歌单。播放仍会自动换源。'
-        : 'Spotify 登录态已保存，可同步会员状态、喜欢和歌单；播放仍会自动换源。')
+        ? 'Spotify 已连接；重新授权一次后可写入喜欢和歌单。播放仍会自动Изменить源。'
+        : 'Spotify 登录态已保存，可同步会员状态、喜欢和歌单；播放仍会自动Изменить源。')
       : config.message,
   });
 }
@@ -1414,7 +1414,7 @@ async function handleSpotifySongUrl(track) {
     restriction: {
       category: 'provider_limited',
       reason: 'spotify_metadata_only',
-      message: 'Spotify 官方 Web API 不提供可交给 Mineradio 播放的音频直链，正在自动换源。',
+      message: 'Spotify 官方 Web API 不提供可交给 Mineradio 播放的音频直链，正在自动Изменить源。',
       action: 'switch_source',
     },
   };
@@ -1429,7 +1429,7 @@ async function handleSpotifyLyric(id) {
     yrc: '',
     ytlrc: '',
     source: 'none',
-    message: 'Spotify Web API 不提供歌词，Mineradio 会沿用跨平台歌词兜底。',
+    message: 'Spotify Web API 不提供歌Текст，Mineradio 会沿用跨平台歌Текст兜底。',
   };
 }
 

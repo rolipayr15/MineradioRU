@@ -51,10 +51,10 @@ function setRange(id, value) {
 }
 function updateDevelopmentFxControls() {
   [
-    ['desktopLyrics', 't-desktopLyrics', '全屏幕置顶歌词'],
-    ['desktopLyricsClickThrough', 't-desktopLyricsClickThrough', '锁定后防误触；鼠标移到桌面歌词上按中键可锁定/解锁'],
-    ['desktopLyricsCinema', 't-desktopLyricsCinema', '桌面歌词绑定鼓点电影震动，基础漂浮始终保留'],
-    ['desktopLyricsHighlight', 't-desktopLyricsHighlight', '桌面歌词按播放进度高亮'],
+    ['desktopLyrics', 't-desktopLyrics', '全屏幕置顶歌Текст'],
+    ['desktopLyricsClickThrough', 't-desktopLyricsClickThrough', '锁定后防误触；鼠标移到桌面歌Текст上按中键可锁定/解锁'],
+    ['desktopLyricsCinema', 't-desktopLyricsCinema', '桌面歌Текст绑定鼓点电影震动，基础漂浮始终保留'],
+    ['desktopLyricsHighlight', 't-desktopLyricsHighlight', '桌面歌Текст按播放进度高亮'],
     ['wallpaperMode', 't-wallpaperMode', '把完整 Mineradio 放到 Windows 桌面；右上控制器可显示、隐藏桌面图标；Esc 退出；重启默认关闭']
   ].forEach(function (item) {
     var runtimeUnavailable = item[0] === 'wallpaperMode'
@@ -129,7 +129,7 @@ function setLyricTextureClarity(value, silent) {
   if (!changed) return;
   if (typeof invalidateLyricQualityTextures === 'function') invalidateLyricQualityTextures('texture-clarity-change', { release: next <= 1 });
   saveLyricLayout({ user: true, reason: 'lyricTextureClarity' });
-  if (!silent) showToast('歌词清晰度: ' + lyricTextureClarityLabel(next));
+  if (!silent) showToast('歌Текст清晰度: ' + lyricTextureClarityLabel(next));
 }
 function updatePerformanceControls() {
   fx.performanceBackground = normalizePerformanceBackgroundMode(fx.performanceBackground, fx.liveBackgroundKeep === true);
@@ -694,7 +694,7 @@ function ensureLyricPrimaryControls() {
     var label = document.createElement('div');
     label.className = 'fx-section-label';
     label.id = 'fx-lyric-primary-label';
-    label.textContent = '歌词开关';
+    label.textContent = '歌Текст开关';
     grid = document.createElement('div');
     grid.className = 'fx-toggle-grid lyric-primary-toggle-grid';
     grid.id = 'fx-lyric-primary-controls';
@@ -749,17 +749,17 @@ function relabelFxPanelControls() {
   setFxSectionBefore('user-archive-grid', '用户存档');
   setFxSectionBefore('ui-accent-picker', '界面与背景');
   setFxSectionBefore('fx-intensity', '画面基础');
-  setFxSectionBefore('fx-lyricglow', '歌词溢光强度');
+  setFxSectionBefore('fx-lyricglow', '歌Текст溢光强度');
   setFxSectionBefore('lyric-color-grid', '文字颜色');
   setFxSectionBefore('lyric-highlight-picker', '跟唱高亮');
-  setFxSectionBefore('lyric-glow-row', '歌词溢光颜色');
-  setFxSectionBefore('lyric-source-seg', '歌词来源');
-  setFxSectionBefore('lyric-display-mode-seg', '歌词行数');
-  setFxSectionBefore('lyric-motion-style-seg', '歌词动画');
+  setFxSectionBefore('lyric-glow-row', '歌Текст溢光颜色');
+  setFxSectionBefore('lyric-source-seg', '歌Текст来源');
+  setFxSectionBefore('lyric-display-mode-seg', '歌Текст行数');
+  setFxSectionBefore('lyric-motion-style-seg', '歌Текст动画');
   setFxSectionBefore('lyric-font-grid', '字体与字距');
   setFxSectionBefore('fx-lyricscale', '位置与角度');
-  setFxSectionBefore('fx-desktoplyricssize', '桌面歌词');
-  setFxSectionBefore('desktop-lyrics-fps-seg', '桌面歌词帧率');
+  setFxSectionBefore('fx-desktoplyricssize', '桌面歌Текст');
+  setFxSectionBefore('desktop-lyrics-fps-seg', '桌面歌Текст帧率');
   setFxSectionBefore('wallpaper-fps-seg', '壁纸帧率');
   setFxSectionBefore('close-behavior-seg', '关闭窗口');
   setFxSectionBefore('t-startupAutoplay', '启动播放');
@@ -801,15 +801,15 @@ function relabelFxPanelControls() {
   setFxSliderLabel('fx-lyrictranslationopacity', '译文透明');
   setFxSliderLabel('fx-lyricedgefade', '边缘渐隐');
   setFxSliderLabel('fx-lyricmotionsoftness', '动画柔顺');
-  setFxSliderLabel('fx-lyricscale', '歌词大小');
+  setFxSliderLabel('fx-lyricscale', '歌Текст大小');
   setFxSliderLabel('fx-lyricx', '左右位置');
   setFxSliderLabel('fx-lyricy', '上下位置');
   setFxSliderLabel('fx-lyricz', '前后景深');
   setFxSliderLabel('fx-lyrictiltx', '上下旋转');
   setFxSliderLabel('fx-lyrictilty', '左右旋转');
-  setFxSliderLabel('fx-desktoplyricssize', '桌面歌词大小');
-  setFxSliderLabel('fx-desktoplyricsopacity', '桌面歌词透明度');
-  setFxSliderLabel('fx-desktoplyricsy', '桌面歌词高度');
+  setFxSliderLabel('fx-desktoplyricssize', '桌面歌Текст大小');
+  setFxSliderLabel('fx-desktoplyricsopacity', '桌面歌Текст透明度');
+  setFxSliderLabel('fx-desktoplyricsy', '桌面歌Текст高度');
   setFxSliderLabel('fx-wallpaperopacity', '壁纸透明度');
   setFxSliderLabel('fx-shelfsize', '歌单架大小');
   setFxSliderLabel('fx-shelfx', '左右位置');

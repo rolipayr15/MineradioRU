@@ -366,9 +366,9 @@ function isNoLyricText(text) {
   var compact = String(text || '').replace(/\s+/g, '').replace(/[，,。.!！?？、~～]/g, '');
   return !compact ||
     compact === '纯音乐请欣赏' ||
-    compact === '暂无歌词' ||
-    compact === '暂无歌词敬请期待' ||
-    compact === '此歌曲为没有填词的纯音乐请您欣赏';
+    compact === '暂无歌Текст' ||
+    compact === '暂无歌Текст敬请期待' ||
+    compact === '此歌曲为没有填Текст的纯音乐请您欣赏';
 }
 function withLyricFallback(lines) {
   return withLyricFallbackForSong(currentLyricSong(), lines);
@@ -657,7 +657,7 @@ function renderLyrics(options) {
   if (!fallbackTitleOnly && typeof scheduleStageLyricFullTrackWarmup === 'function') {
     scheduleStageLyricFullTrackWarmup(restoreWarmup ? 'track-ready-fast' : 'lyrics-ready-preload', restoreWarmup ? 120 : 24);
   }
-  // v8: 歌词渲染由 stageLyrics 在每帧 tickLyricsParticles 里推动
+  // v8: 歌Текст渲染由 stageLyrics 在每帧 tickLyricsParticles 里推动
 }
 function toggleLyricsPanel(force) {
   if (force === false) fx.particleLyrics = false;
@@ -668,10 +668,10 @@ function toggleLyricsPanel(force) {
     if (typeof requestStageLyricWarmup === 'function') requestStageLyricWarmup('toggleLyricsPanel', 150);
     if (typeof scheduleStageLyricPrewarm === 'function') scheduleStageLyricPrewarm('toggleLyricsPanel', 48);
     if (typeof scheduleStageLyricFullTrackWarmup === 'function') scheduleStageLyricFullTrackWarmup('track-ready', 220);
-    showToast('歌词已开启');
+    showToast('歌Текст已开启');
   } else {
     clearStageLyrics();
-    showToast('歌词已关闭');
+    showToast('歌Текст已关闭');
   }
   lyricsVisible = fx.particleLyrics;
 }

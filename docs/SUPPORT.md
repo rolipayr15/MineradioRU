@@ -1,6 +1,6 @@
 # Mineradio 作者支持渠道
 
-如果 Mineradio 陪你多听了一首歌，也欢迎通过下面的二维码支持作者继续维护。
+如果 Mineradio 陪你多听了一трека歌，也欢迎通过下面的二维码支持作者继续维护。
 
 ![Mineradio 作者支持渠道](./assets/support/mineradio-author-support-poster.png)
 

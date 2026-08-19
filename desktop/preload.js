@@ -77,6 +77,7 @@ contextBridge.exposeInMainWorld('desktopWindow', {
   openSpotifyMusicLogin: () => ipcRenderer.invoke('spotify-music-open-login'),
   clearSpotifyMusicLogin: () => ipcRenderer.invoke('spotify-music-clear-login'),
   openUpdatePage: (url) => ipcRenderer.invoke('mineradio-open-update-page', String(url || '')),
+  openCommunityPage: (repository) => ipcRenderer.invoke('mineradio-open-community-page', String(repository || '')),
   restartApp: () => ipcRenderer.invoke('mineradio-restart-app'),
   configureGlobalHotkeys: (bindings) => ipcRenderer.invoke('mineradio-hotkeys-configure-global', bindings || []),
   copyText: (text) => {

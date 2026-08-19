@@ -20,8 +20,8 @@ function sourceBlock(text, startNeedle, endNeedle) {
 function testLoginWishTitle() {
   assert.match(
     htmlText,
-    /<h1>\s*心愿是\s*<\/h1>/,
-    '彩蛋解锁面板标题必须保持为“心愿是”'
+    /<h1>\s*Загадай желание...\s*<\/h1>/,
+    'Заголовок панели разблокировки пасхалки должен оставаться «Загадай желание...».'
   );
   assert.doesNotMatch(
     htmlText,
@@ -60,7 +60,7 @@ function testRendererGoneDelayedRecovery() {
     'async function loadMainWindowWithRetry(win)'
   );
   assert.match(recoveryBlock, /await startupDelay\(\d+\)/, '渲染进程退出后必须延迟恢复');
-  assert.match(recoveryBlock, /await ensureLocalServerStarted\(\)/, '恢复前必须确保本地服务可用');
+  assert.match(recoveryBlock, /await ensureLocalServerStarted\(\)/, '恢复前必须确保Локально服务可用');
   assert.match(recoveryBlock, /await loadMainWindowWithRetry\(win\)/, '恢复必须走有界重载链路');
   assert.match(recoveryBlock, /mainWindowRendererRecoveryPromise/, '同一时刻只能有一个恢复任务');
   assert.match(recoveryBlock, /reserveMainWindowRendererRecoveryAttempt\(\)/, '恢复必须有循环上限');
@@ -94,7 +94,7 @@ function testFullscreenVisibilityAndSystemWakeGuards() {
     'function reserveMainWindowRendererRecoveryAttempt()'
   );
   assert.match(visibilityBlock, /win\.__mineradioIntentionalHide === true/, '托盘主动隐藏必须跳过可见性守护');
-  assert.match(visibilityBlock, /fullDesktopModeHostVisibilityTransitionDepth > 0/, '桌面嵌入切换期间必须跳过守护');
+  assert.match(visibilityBlock, /fullDesktopModeHostVisibilityTransitionDepth > 0/, '桌面嵌入Режим воспроизведения期间必须跳过守护');
   assert.match(visibilityBlock, /fullDesktopModeRuntime\.getStatus\('fullscreen-visibility-guard'\)\.enabled === true/, '桌面模式不得被普通全屏守护拉回顶层');
   assert.match(visibilityBlock, /!win\.isFullScreen\(\)/, '守护只应修复全屏窗口');
   assert.match(visibilityBlock, /win\.isMinimized\(\)/, '用户主动最小化不得被自动拉起');

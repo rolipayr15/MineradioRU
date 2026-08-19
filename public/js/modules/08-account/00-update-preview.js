@@ -245,9 +245,9 @@ function syncUpdatePreviewStateClass() {
     if (isOpening) foot.textContent = '正在调用系统浏览器。';
     else if (isError) foot.textContent = '无法打开下载页：' + (updatePreviewState.errorReason || '请稍后重试');
     else if (!updatePreviewState.updateAvailable) foot.textContent = '当前版本已是最新。';
-    else if (downloadPages.length > 1) foot.textContent = '可选择任一网盘线路；软件不会在本地下载或应用补丁。';
-    else if (updatePreviewState.externalUrl) foot.textContent = '将在浏览器打开网盘下载页；软件不会在本地下载或应用补丁。';
-    else foot.textContent = '将在浏览器打开 GitHub 更新页面；软件不会在本地下载或应用补丁。';
+    else if (downloadPages.length > 1) foot.textContent = '可Выбрать任一网盘线路；软件不会在Локально下载或应用补丁。';
+    else if (updatePreviewState.externalUrl) foot.textContent = '将在浏览器打开网盘下载页；软件不会在Локально下载或应用补丁。';
+    else foot.textContent = '将在浏览器打开 GitHub 更新页面；软件不会在Локально下载或应用补丁。';
   }
 }
 

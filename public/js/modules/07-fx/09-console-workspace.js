@@ -3,7 +3,7 @@
 var FX_CONSOLE_TABS = [
   { key: 'home', label: '常用' },
   { key: 'interface', label: '界面' },
-  { key: 'lyrics', label: '歌词' },
+  { key: 'lyrics', label: '歌Текст' },
   { key: 'motion', label: '动效' },
   { key: 'shelf', label: '歌单架' },
   { key: 'system', label: '系统' }
@@ -66,60 +66,60 @@ var FX_CONSOLE_LAYOUT = [
   {
     key: 'lyrics',
     groups: [
-      { key: 'display', title: '显示与翻译', hint: '歌词来源、行数和双语译文', open: true, items: [
-        fxConsoleItem('lyric-source-seg', '歌词来源', '原词 自定义歌词', false),
-        fxConsoleItem('lyric-display-mode-seg', '歌词行数', '单行 双行 三行 沉浸 自定义'),
-        fxConsoleItem('fx-lyriccustomlines', '显示行数', '自定义歌词行数'),
+      { key: 'display', title: '显示与翻译', hint: '歌Текст来源、行数和双语译文', open: true, items: [
+        fxConsoleItem('lyric-source-seg', '歌Текст来源', '原Текст 自定义歌Текст', false),
+        fxConsoleItem('lyric-display-mode-seg', '歌Текст行数', '单行 双行 三行 沉浸 自定义'),
+        fxConsoleItem('fx-lyriccustomlines', '显示行数', '自定义歌Текст行数'),
         fxConsoleItem('lyric-translation-mode-seg', '双语翻译', '译文 当前 双行 多行 关闭'),
         fxConsoleItem('fx-lyrictranslationgap', '译文间距', '翻译距离'),
         fxConsoleItem('fx-lyrictranslationscale', '译文字号', '翻译大小'),
         fxConsoleItem('fx-lyrictranslationopacity', '译文透明', '翻译透明度')
       ] },
       { key: 'colors', title: '颜色与光效', hint: '文字、高亮、溢光和亮底可读性', items: [
-        fxConsoleItem('lyric-color-grid', '歌词颜色', '文字颜色 封面取色'),
-        fxConsoleItem('lyric-color-picker', '歌词自定义颜色', '文字色轮'),
+        fxConsoleItem('lyric-color-grid', '歌Текст颜色', '文字颜色 封面取色'),
+        fxConsoleItem('lyric-color-picker', '歌Текст自定义颜色', '文字色轮'),
         fxConsoleItem('lyric-highlight-picker', '跟唱高亮', '高亮颜色 逐字'),
-        fxConsoleItem('lyric-glow-picker', '歌词溢光颜色', '辉光 光晕 颜色'),
-        fxConsoleItem({ selector: '.lyric-glow-effect-row' }, '歌词溢光开关', '后层溢光 跟随鼓点'),
-        fxConsoleItem('fx-lyricglow', '溢光强度', '歌词辉光 强度'),
+        fxConsoleItem('lyric-glow-picker', '歌Текст溢光颜色', '辉光 光晕 颜色'),
+        fxConsoleItem({ selector: '.lyric-glow-effect-row' }, '歌Текст溢光开关', '后层溢光 跟随鼓点'),
+        fxConsoleItem('fx-lyricglow', '溢光强度', '歌Текст辉光 强度'),
         fxConsoleItem('fx-lyricbgadapt', '亮底避光', '亮背景 可读性 自动压光'),
-        fxConsoleItem('t-lyricGlow', '歌词溢光', '后层辉光 开关'),
-        fxConsoleItem('t-lyricGlowBeat', '鼓点溢光', '歌词辉光 跟随节拍'),
-        fxConsoleItem('t-lyricGlowParticles', '歌词光粒', '歌词粒子 光点')
+        fxConsoleItem('t-lyricGlow', '歌Текст溢光', '后层辉光 开关'),
+        fxConsoleItem('t-lyricGlowBeat', '鼓点溢光', '歌Текст辉光 跟随节拍'),
+        fxConsoleItem('t-lyricGlowParticles', '歌Текст光粒', '歌Текст粒子 光点')
       ] },
       { key: 'type', title: '字体与排版', hint: '字体、字重、大小、位置和角度', items: [
-        fxConsoleItem('lyric-texture-quality-seg', '歌词清晰度', '分辨率 纹理 1x 2x 3x 4x 标清 高清 超清 极致 低配 显存 放大 清楚'),
-        fxConsoleItem('lyric-font-grid', '歌词字体', '黑体 宋体 楷宋 Serif Gothic 等宽 上传字体'),
+        fxConsoleItem('lyric-texture-quality-seg', '歌Текст清晰度', '分辨率 纹理 1x 2x 3x 4x 标清 高清 超清 极致 低配 显存 放大 清楚'),
+        fxConsoleItem('lyric-font-grid', '歌Текст字体', '黑体 宋体 楷宋 Serif Gothic 等宽 上传字体'),
         fxConsoleItem('fx-lyricspacing', '字间距', '文字间距'),
-        fxConsoleItem('fx-lyriclineheight', '行距', '歌词行间距'),
+        fxConsoleItem('fx-lyriclineheight', '行距', '歌Текст行间距'),
         fxConsoleItem('fx-lyricweight', '字重', '粗细'),
-        fxConsoleItem('fx-lyricscale', '歌词大小', '字号 缩放'),
-        fxConsoleItem('fx-lyricx', '左右位置', '歌词水平'),
-        fxConsoleItem('fx-lyricy', '上下位置', '歌词垂直 高度'),
-        fxConsoleItem('fx-lyricz', '前后景深', '歌词远近 Z'),
-        fxConsoleItem('fx-lyrictiltx', '上下旋转', '歌词俯仰'),
-        fxConsoleItem('fx-lyrictilty', '左右旋转', '歌词侧旋')
+        fxConsoleItem('fx-lyricscale', '歌Текст大小', '字号 缩放'),
+        fxConsoleItem('fx-lyricx', '左右位置', '歌Текст水平'),
+        fxConsoleItem('fx-lyricy', '上下位置', '歌Текст垂直 高度'),
+        fxConsoleItem('fx-lyricz', '前后景深', '歌Текст远近 Z'),
+        fxConsoleItem('fx-lyrictiltx', '上下旋转', '歌Текст俯仰'),
+        fxConsoleItem('fx-lyrictilty', '左右旋转', '歌Текст侧旋')
       ] },
-      { key: 'motion', title: '歌词动画', hint: '滚动手感、上下文层次与故障效果', items: [
-        fxConsoleItem('lyric-motion-style-seg', '歌词动画', '漂浮 柔滑 玻璃 线光 故障'),
+      { key: 'motion', title: '歌Текст动画', hint: '滚动手感、上下文层次与故障效果', items: [
+        fxConsoleItem('lyric-motion-style-seg', '歌Текст动画', '漂浮 柔滑 玻璃 线光 故障'),
         fxConsoleItem('lyric-glitch-controls', '故障细节', '故障强度 切片 色散 触发速度 抖动 鼓点'),
         fxConsoleItem('fx-lyriccontextopacity', '上下句清晰', '上下文透明度'),
         fxConsoleItem('fx-lyriccontextspread', '上下句间距', '上下文距离'),
-        fxConsoleItem('fx-lyricedgefade', '边缘渐隐', '歌词边缘淡出'),
-        fxConsoleItem('fx-lyricmotionsoftness', '动画柔顺', '歌词滚动 丝滑 缓动'),
-        fxConsoleItem('t-lyricVerticalFloat', '歌词上下浮动', '漂浮 垂直'),
-        fxConsoleItem('t-lyricCameraLock', '歌词镜头绑定', '跟随镜头 锁定'),
-        fxConsoleItem('t-lyricPauseHold', '暂停保留歌词', '暂停不隐藏')
+        fxConsoleItem('fx-lyricedgefade', '边缘渐隐', '歌Текст边缘淡出'),
+        fxConsoleItem('fx-lyricmotionsoftness', '动画柔顺', '歌Текст滚动 丝滑 缓动'),
+        fxConsoleItem('t-lyricVerticalFloat', '歌Текст上下浮动', '漂浮 垂直'),
+        fxConsoleItem('t-lyricCameraLock', '歌Текст镜头绑定', '跟随镜头 锁定'),
+        fxConsoleItem('t-lyricPauseHold', '暂停保留歌Текст', '暂停不隐藏')
       ] },
-      { key: 'desktop', title: '桌面歌词', hint: '桌面层开关、位置、透明度和帧数', items: [
-        fxConsoleItem('t-desktopLyrics', '桌面歌词', '全屏置顶歌词'),
-        fxConsoleItem('t-desktopLyricsClickThrough', '桌面歌词锁定', '鼠标穿透 防误触'),
-        fxConsoleItem('t-desktopLyricsCinema', '桌面歌词电影震动', '桌面歌词 鼓点'),
-        fxConsoleItem('t-desktopLyricsHighlight', '桌面歌词高亮跟随', '桌面逐字高亮'),
-        fxConsoleItem('fx-desktoplyricssize', '桌面歌词大小', '桌面字号'),
-        fxConsoleItem('fx-desktoplyricsopacity', '桌面歌词透明度', '桌面歌词透明'),
-        fxConsoleItem('fx-desktoplyricsy', '桌面歌词高度', '桌面位置'),
-        fxConsoleItem('desktop-lyrics-fps-seg', '桌面歌词帧率', '24 30 60 120 无上限 FPS')
+      { key: 'desktop', title: '桌面歌Текст', hint: '桌面层开关、位置、透明度和帧数', items: [
+        fxConsoleItem('t-desktopLyrics', '桌面歌Текст', '全屏置顶歌Текст'),
+        fxConsoleItem('t-desktopLyricsClickThrough', '桌面歌Текст锁定', '鼠标穿透 防误触'),
+        fxConsoleItem('t-desktopLyricsCinema', '桌面歌Текст电影震动', '桌面歌Текст 鼓点'),
+        fxConsoleItem('t-desktopLyricsHighlight', '桌面歌Текст高亮跟随', '桌面逐字高亮'),
+        fxConsoleItem('fx-desktoplyricssize', '桌面歌Текст大小', '桌面字号'),
+        fxConsoleItem('fx-desktoplyricsopacity', '桌面歌Текст透明度', '桌面歌Текст透明'),
+        fxConsoleItem('fx-desktoplyricsy', '桌面歌Текст高度', '桌面位置'),
+        fxConsoleItem('desktop-lyrics-fps-seg', '桌面歌Текст帧率', '24 30 60 120 无上限 FPS')
       ] }
     ]
   },
@@ -151,7 +151,7 @@ var FX_CONSOLE_LAYOUT = [
         fxConsoleItem('fx-sonicspeed', '起伏速度', '地形运动'),
         fxConsoleItem('fx-sonicdensity', '地形密度', '网格密度'),
         fxConsoleItem('fx-sonicrange', '地面范围', '地形大小'),
-        fxConsoleItem('fx-soniclower', '歌词避让', '地形降低'),
+        fxConsoleItem('fx-soniclower', '歌Текст避让', '地形降低'),
         fxConsoleItem('fx-sonicdepth', '地面远近', '地形景深'),
         fxConsoleItem('fx-sonicautorotate', '地形自转', '旋转速度'),
         fxConsoleItem('sonic-ground-base-picker', '地形暗部', '音域底色'),
@@ -259,7 +259,7 @@ var FX_CONSOLE_LAYOUT = [
         fxConsoleItem('close-behavior-seg', '关闭窗口', '直接退出 后台托盘'),
         fxConsoleItem('t-startupAutoplay', '启动自动播放', '打开软件继续播放'),
         fxConsoleItem('t-startupFastSkip', '秒启动跳过启动页', '快速启动'),
-        fxConsoleItem('startup-resume-mode-seg', '恢复播放位置', '按上次进度 重播整首')
+        fxConsoleItem('startup-resume-mode-seg', '恢复播放位置', '按上次进度 重播整трека')
       ] },
       { key: 'output', title: '播放输出', hint: '音频输出设备和路由面板', items: [
         fxConsoleItem('audio-output-panel', '播放输出设备', '声卡 耳机 扬声器 路由', false)
@@ -278,15 +278,15 @@ var FX_CONSOLE_LAYOUT = [
         fxConsoleItem('t-memoryAutoSystemTrim', '系统级定时释放', 'Mem Reduct 自动'),
         fxConsoleItem('t-memorySystemAutoElevate', '需要时请求管理员', 'UAC 提权'),
         fxConsoleItem('memory-mask-seg', '系统释放范围', '工作集 修改页 待机页'),
-        fxConsoleItem('fx-memory-interval', '定时释放', '分钟 间隔'),
+        fxConsoleItem('fx-memory-interval', '定时释放', 'Минут 间隔'),
         fxConsoleItem('fx-memory-threshold', '占用阈值', '内存百分比'),
         fxConsoleItem({ selector: '.memory-action-row' }, '手动内存操作', '压缩播放器 系统释放 提权释放', false)
       ] },
       { key: 'cache', title: '缓存与存储', hint: '统一缓存目录、占用和各类路径', items: [
-        fxConsoleItem('cache-storage-panel', '本地缓存', '缓存路径 缓存目录 占用 歌词 封面 音频 更新', false)
+        fxConsoleItem('cache-storage-panel', 'Локально缓存', '缓存路径 缓存目录 占用 歌Текст 封面 音频 更新', false)
       ] },
       { key: 'experimental', title: '实验功能', hint: '尚未开放或需要谨慎使用的能力', items: [
-        fxConsoleItem('t-wallpaperMode', '完整桌面模式', '完整 Mineradio 进入桌面层 Ctrl Shift M 切换操作层 本次启动有效', false)
+        fxConsoleItem('t-wallpaperMode', '完整桌面模式', '完整 Mineradio 进入桌面层 Ctrl Shift M Режим воспроизведения操作层 本次启动有效', false)
       ] }
     ]
   }
@@ -313,7 +313,7 @@ function fxConsoleMakeToolbar(panel) {
   toolbar.innerHTML =
     '<div class="fx-console-search-row" role="search">' +
     '<span class="fx-console-search-icon" aria-hidden="true">⌕</span>' +
-    '<input id="fx-console-search" class="fx-console-search" type="search" autocomplete="off" spellcheck="false" aria-label="搜索视觉控制台功能" aria-controls="fx-console-search-results" aria-expanded="false" placeholder="搜索功能，如：粒子、缓存、歌词">' +
+    '<input id="fx-console-search" class="fx-console-search" type="search" autocomplete="off" spellcheck="false" aria-label="搜索视觉控制台功能" aria-controls="fx-console-search-results" aria-expanded="false" placeholder="搜索功能，如：粒子、缓存、歌Текст">' +
     '<button id="fx-console-undo" class="fx-console-tool-btn" type="button" disabled aria-label="撤销上一步设置" title="撤销上一步设置">↶<span>撤销</span></button>' +
     '<button id="fx-console-history-toggle" class="fx-console-tool-btn" type="button" aria-label="最近操作" aria-controls="fx-console-history" aria-haspopup="true" aria-expanded="false" title="最近操作">◷<span>历史</span></button>' +
     '</div>' +

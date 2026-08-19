@@ -189,7 +189,7 @@ async function ensureAIDepthPipeline() {
   if (aiDepthBusy) return null;
   aiDepthBusy = true;
   try {
-    showAIDepthChip('加载 AI 深度模型 (首次需下载 50MB)…');
+    showAIDepthChip('加载 AI 深度模型 (трека次需下载 50MB)…');
     var mod = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
     mod.env.allowLocalModels = false;
     if (mod.env.backends && mod.env.backends.onnx && mod.env.backends.onnx.wasm) mod.env.backends.onnx.wasm.numThreads = 1;
@@ -648,4 +648,4 @@ function applyCoverCanvas(cv, thumbSrc, opts) {
 //          → 短时能量曲线 → 自适应阈值检测峰值
 //          → 输出 kick 时间戳数组 (单位: 秒)
 //    优点: 完全规避人声干扰; 预先准备好节奏表
-//    缺点: 每首歌首次要 1-3 秒
+//    缺点: 每трека歌трека次要 1-3 秒

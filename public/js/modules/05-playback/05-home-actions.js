@@ -45,7 +45,7 @@ function openHomeInsight() {
     runHomeSearch(summary.topSong.name);
     return;
   }
-  showToast('播放几首歌后会生成听歌画像');
+  showToast('播放几трека歌后会生成听歌画像');
 }
 function handleHomeTileClick(index) {
   var row = document.getElementById('home-tile-row');

@@ -110,7 +110,7 @@ function playbackRestrictionNotice(song, data) {
     var title = membershipPending ? 'QQ 会员状态待同步' : (loggedIn ? '当前平台没有会员状态' : '当前平台未登录会员');
     var body = message || (provider + ' 已识别为会员/付费曲目，当前状态是 ' + membership + '，缺少' + needText + '。');
     if (loggedIn && body.indexOf('当前状态') < 0) body += ' 当前状态是 ' + membership + '。';
-    return { category: category, title: title, body: body + ' 可以登录会员账号、降低音质或切换到其它音源。', action: 'upgrade', toast: title };
+    return { category: category, title: title, body: body + ' 可以登录会员账号、降低音质或Режим воспроизведения到其它音源。', action: 'upgrade', toast: title };
   }
   if (category === 'login_required') {
     if (loggedIn && playbackRestrictionMissingPlaybackKey(data)) {
@@ -136,14 +136,14 @@ function playbackRestrictionNotice(song, data) {
       title: '平台仅作为匹配源',
       body: message || (provider + ' 当前只提供搜索/匹配信息，播放会自动寻找其它可播版本。'),
       action: 'switch_source',
-      toast: '正在自动换源'
+      toast: '正在自动Изменить源'
     };
   }
   if (category === 'copyright_unavailable') {
     return {
       category: category,
       title: '当前平台版权不可播',
-      body: (message || (provider + ' 当前版权暂不可播。')) + ' 可以换一个平台版本。',
+      body: (message || (provider + ' 当前版权暂不可播。')) + ' 可以Изменить一个平台版本。',
       action: 'switch_source',
       toast: '版权不可播'
     };
@@ -151,7 +151,7 @@ function playbackRestrictionNotice(song, data) {
   return {
     category: category,
     title: '当前平台没有可用音源',
-    body: (message || (provider + ' 没有返回可播放地址。')) + ' 可能是版权、地区、会员或网络限制，可以换源或稍后重试。',
+    body: (message || (provider + ' 没有返回可播放地址。')) + ' 可能是版权、地区、会员或网络限制，可以Изменить源或稍后重试。',
     action: 'switch_source',
     toast: '当前平台没有可用音源'
   };
@@ -174,7 +174,7 @@ function playbackRestrictionMessage(song, data) {
     else message = provider + '没有返回可播放地址';
   }
   if (category === 'login_required') return message + ' · 正在打开登录';
-  if (category === 'provider_limited') return message + ' · 可以自动换源';
+  if (category === 'provider_limited') return message + ' · 可以自动Изменить源';
   if (category === 'copyright_unavailable' || category === 'url_unavailable') return message + ' · 可以试试另一个平台版本';
   return message;
 }
@@ -245,7 +245,7 @@ function showSourceFallbackNotice(title, body) {
     head.className = 'source-fallback-head';
     var titleElNew = document.createElement('div');
     titleElNew.className = 'source-fallback-title';
-    titleElNew.textContent = title || '自动换源';
+    titleElNew.textContent = title || '自动Изменить源';
     var close = document.createElement('button');
     close.className = 'source-fallback-close';
     close.type = 'button';
@@ -268,7 +268,7 @@ function showSourceFallbackNotice(title, body) {
   var titleEl = document.getElementById('source-fallback-title');
   var bodyEl = document.getElementById('source-fallback-body');
   if (!notice || !titleEl || !bodyEl) return;
-  titleEl.textContent = title || '自动换源';
+  titleEl.textContent = title || '自动Изменить源';
   bodyEl.textContent = body || '';
   notice.classList.add('show');
   if (sourceFallbackNoticeTimer) clearTimeout(sourceFallbackNoticeTimer);
@@ -623,13 +623,13 @@ async function skipFailedQueueItem(idx, token, message, opts) {
     return settleSourceFallbackTerminal(idx, token, '', terminalOpts);
   }
   if (recovery.queueAdvances >= SOURCE_FALLBACK_MAX_QUEUE_ADVANCES) {
-    return settleSourceFallbackTerminal(idx, token, '已停止自动切换，避免无可用音源时反复扫描整条队列。', terminalOpts);
+    return settleSourceFallbackTerminal(idx, token, '已停止自动Режим воспроизведения，避免无可用音源时反复扫描整条队列。', terminalOpts);
   }
   var nextIdx = nextUnblockedQueueIndex(idx, recovery);
   if (nextIdx < 0) {
-    return settleSourceFallbackTerminal(idx, token, '已尝试绕开受限歌曲，当前队列没有新的可播放项。', terminalOpts);
+    return settleSourceFallbackTerminal(idx, token, 'Попытка пропустить недоступные для воспроизведения композиции; в текущей очереди нет новых доступных для воспроизведения элементов.', terminalOpts);
   }
-  if (!opts.silent) showSourceFallbackNotice('已跳过受限歌曲', message || '未找到同名同歌手的另一个平台版本，正在播放下一首。');
+  if (!opts.silent) showSourceFallbackNotice('已跳过受限歌曲', message || '未找到同名同Исполнитель的另一个平台版本，Воспроизводится下一трека。');
   recovery.queueAdvances++;
   var nextRecoveryKey = sourceFallbackRecoveryContentKey(playQueue[nextIdx]);
   if (nextRecoveryKey) recovery.visitedSongKeys[nextRecoveryKey] = true;
@@ -676,7 +676,7 @@ async function tryAutoPlaybackFallback(song, data, idx, token, opts) {
     return await skipFailedQueueItem(idx, token, '当前歌曲不可播放，且没有其它已登录、已授权的音乐平台可接管。', skipOpts);
   }
   if (!opts.startupAutoplay) {
-    showSourceFallbackNotice('正在自动换源', fromLabel + ' 当前不可播，正在检查 ' + alternateProviders.map(sourceFallbackProviderTitle).join('、') + ' 的同名同歌手版本。');
+    showSourceFallbackNotice('正在自动Изменить源', fromLabel + ' 当前不可播，正在检查 ' + alternateProviders.map(sourceFallbackProviderTitle).join('、') + ' 的同名同Исполнитель版本。');
   }
   for (var providerIndex = 0; providerIndex < alternateProviders.length; providerIndex++) {
     var alternateProvider = alternateProviders[providerIndex];
@@ -726,7 +726,7 @@ async function tryAutoPlaybackFallback(song, data, idx, token, opts) {
       if (fallbackToken !== trackSwitchToken) return false;
       if (fallbackStarted === true) {
         completeSourceFallbackRecovery(recovery);
-        if (!opts.startupAutoplay) showSourceFallbackNotice('已自动切换音源', (song.name || '当前歌曲') + ' 已从 ' + fromLabel + ' 切到 ' + targetLabel + '。');
+        if (!opts.startupAutoplay) showSourceFallbackNotice('已自动Режим воспроизведения音源', (song.name || '当前歌曲') + ' 已从 ' + fromLabel + ' 切到 ' + targetLabel + '。');
         return true;
       }
       restoreSourceFallbackQueueItem(idx, originalSong, committedCandidate, fallbackToken);
@@ -742,7 +742,7 @@ async function tryAutoPlaybackFallback(song, data, idx, token, opts) {
       console.warn('[SourceFallback]', alternateProvider, e && (e.message || e));
     }
   }
-  return await skipFailedQueueItem(idx, token, '没有找到可播放的已登录平台版本，正在播放下一首。', skipOpts);
+  return await skipFailedQueueItem(idx, token, '没有找到可播放的已登录平台版本，Воспроизводится下一трека。', skipOpts);
 }
 function handlePlaybackUnavailable(song, data) {
   hideLoading();

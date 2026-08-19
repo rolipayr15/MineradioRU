@@ -496,40 +496,41 @@ var visualGuideSteps = [
   {
     target: 'stage',
     kicker: '01 / Welcome',
-    title: 'Mineradio 是用来听歌的视觉播放器',
-    body: '它不是单纯歌单页：搜索或导入一首歌后，封面、歌词、粒子和镜头会跟着音乐一起动。'
+    title: 'Mineradio — это визуальный плеер для прослушивания музыки',
+    body: 'Это не просто список треков: после поиска или импорта песни обложка, текст, частицы и эффекты камеры будут двигаться в такт музыке.'
   },
   {
     selector: '#search-box',
     kicker: '02 / Play',
-    title: '从搜索或导入开始',
-    body: '输入歌名、歌手或关键词即可播放；如果有本地音乐，也可以用导入入口直接放进舞台。'
+    title: 'Начните с поиска или импорта',
+    body: 'Введите название песни, исполнителя или ключевые слова для воспроизведения. Если у вас есть локальные треки, вы можете импортировать их напрямую на сцену.'
   },
   {
     selector: '#bottom-bar',
     kicker: '03 / Control',
-    title: '播放以后看底部控制台',
-    body: '播放、切歌、进度、队列和歌词都集中在底部，先把它当作一个正常播放器使用就可以。'
+    title: 'После запуска трека используйте нижнюю панель',
+    body: 'Воспроизведение, переключение треков, прогресс, очередь и текст песни сосредоточены внизу. Для начала можете использовать его как обычный плеер.'
   },
   {
     selector: '#user-btn',
     kicker: '04 / Account',
-    title: '登录只是为了同步你的音乐库',
-    body: '登录后会同步歌单、红心和播客；不登录也可以搜索和播放，不会强制卡住你。'
+    title: 'Вход в аккаунт нужен только для синхронизации медиатеки',
+    body: 'После авторизации синхронизируются ваши плейлисты, любимые треки и подкасты. Искать и слушать музыку можно и без входа, это вас ни в чем не ограничивает.'
   },
   {
     target: 'shelf',
     kicker: '05 / Visual',
-    title: '进阶视觉都放在舞台周围',
-    body: '右侧 3D 歌单架和 DIY 玩家模式是进阶入口；先播放一首歌，再慢慢调视觉效果。'
+    title: 'Продвинутые визуальные эффекты расположены вокруг сцены',
+    body: 'Правая 3D-полка плейлистов и режим DIY-энтузиаста — это доступ к продвинутым функциям. Сначала включите песню, а затем не спеша настраивайте визуал.'
   },
   {
     selector: '#diy-mode-btn',
     kicker: '06 / DIY',
-    title: '高级功能在 DIY 玩家模式',
-    body: '视觉控制台、上传/封面、自定义歌词、音质和更多面板都会在这里展开。'
+    title: 'Расширенные настройки в режиме DIY',
+    body: 'Консоль визуализации, загрузка обложек, кастомные тексты песен, параметры качества звука и другие панели управления откроются именно здесь.'
   }
 ];
+
 var visualGuideStepsDiy = [
   {
     selector: '#diy-mode-btn',
@@ -541,7 +542,7 @@ var visualGuideStepsDiy = [
     selector: '#search-box',
     kicker: '02 / Search',
     title: '搜索源和导入入口会展开',
-    body: '顶部搜索支持更多来源切换，上传歌曲、封面等入口也会在 DIY 模式中显示。'
+    body: '顶部搜索支持更多来源Режим воспроизведения，上传歌曲、封面等入口也会在 DIY 模式中显示。'
   },
   {
     selector: '#playlist-panel',
@@ -553,13 +554,13 @@ var visualGuideStepsDiy = [
     selector: '#fx-panel',
     kicker: '04 / Visual Lab',
     title: '右侧是视觉控制台',
-    body: '靠近右下角或点击视觉按钮，可以调节粒子、歌词、镜头、3D 歌单架和更多视觉参数。'
+    body: '靠近右下角或点击视觉按钮，可以调节粒子、歌Текст、镜头、3D 歌单架和更多视觉参数。'
   },
   {
     selector: '#quality-control',
     kicker: '05 / Controls',
     title: '高级播放控制会补全',
-    body: '音质、播放顺序、收藏、歌词源和更多按钮会在 DIY 模式中完整显示。'
+    body: '音质、播放顺序、收藏、歌Текст源和更多按钮会在 DIY 模式中完整显示。'
   },
   {
     target: 'shelf',
@@ -652,9 +653,9 @@ function showVisualGuideStep(index) {
   if (title) title.textContent = step.title;
   if (body) body.textContent = step.body;
   if (kicker) kicker.textContent = step.kicker;
-  if (hint) hint.textContent = visualGuideStep === steps.length - 1 ? '点击空白处完成引导' : '点击空白处也可以继续';
+  if (hint) hint.textContent = visualGuideStep === steps.length - 1 ? 'Нажмите на пустое место, чтобы завершить обучение.' : 'Нажмите на пустое место, чтобы продолжить';
   if (progress) progress.textContent = (visualGuideStep + 1) + ' / ' + steps.length;
-  if (next) next.textContent = visualGuideStep === steps.length - 1 ? '完成' : '下一步';
+  if (next) next.textContent = visualGuideStep === steps.length - 1 ? '完成' : 'Далее';
   scheduleVisualGuidePositioning();
 }
 function guideTargetRect(step) {

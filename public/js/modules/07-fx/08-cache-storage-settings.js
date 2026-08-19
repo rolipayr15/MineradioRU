@@ -44,14 +44,14 @@ function applyMineradioCacheSettings(snapshot) {
   setMineradioCacheStorageText(
     'cache-storage-note',
     settings.restartRequired
-      ? '歌词缓存已切换；封面、网络、音频分片、节奏分析与 WE 静音场景将在重启后改用新目录。'
-      : '歌词缓存立即生效；封面、网络、音频分片、节奏分析与 WE 静音场景已使用此目录。'
+      ? '歌Текст缓存已Режим воспроизведения；封面、网络、音频分片、节奏分析与 WE 静音场景将在重启后改用新目录。'
+      : '歌Текст缓存立即生效；封面、网络、音频分片、节奏分析与 WE 静音场景已使用此目录。'
   );
 }
 
 function refreshMineradioCacheSettings() {
   if (!window.desktopWindow || typeof window.desktopWindow.getCacheSettings !== 'function') {
-    applyMineradioCacheSettings({ ok: false, error: '仅桌面版支持本地缓存路径设置' });
+    applyMineradioCacheSettings({ ok: false, error: '仅桌面版支持Локально缓存路径设置' });
     return Promise.resolve();
   }
   setMineradioCacheStorageText('cache-storage-total', '正在统计...');

@@ -138,7 +138,7 @@ function renderSearchHistory() {
   }
   $results.innerHTML =
     '<div class="search-history">' +
-    '<div class="search-history-head"><span>搜索历史</span><button class="search-history-clear" type="button" data-clear-history="1">清空</button></div>' +
+    '<div class="search-history-head"><span>搜索历史</span><button class="search-history-clear" type="button" data-clear-history="1">Очистить</button></div>' +
     '<div class="search-history-list">' +
     items.map(function (q) { return '<button class="search-history-chip" type="button" data-history-query="' + escHtml(q) + '">' + escHtml(q) + '</button>'; }).join('') +
     '</div>' +
@@ -199,7 +199,7 @@ function updateSearchModeTabs() {
   if ($input) {
     $input.placeholder = searchMode === 'podcast'
       ? '搜索播客、电台...'
-      : (searchMode === 'kugou' ? '搜索酷狗音乐...' : (searchMode === 'qq' ? '搜索 QQ 音乐...' : (searchMode === 'netease' ? '搜索网易云音乐...' : '搜索歌曲、歌手...')));
+      : (searchMode === 'kugou' ? '搜索酷狗音乐...' : (searchMode === 'qq' ? '搜索 QQ 音乐...' : (searchMode === 'netease' ? '搜索网易云音乐...' : 'Поиск、Исполнитель...')));
   }
   if ($input && searchMode === 'qishui') $input.placeholder = '搜索汽水音乐匹配源...';
   if ($input && searchMode === 'spotify') $input.placeholder = '搜索 Spotify 匹配源...';
@@ -344,7 +344,7 @@ function renderPodcastPrograms() {
         '<div class="search-result-meta">' + escHtml(programMetaText(p)) + '</div>' +
         '</div>' +
         '</div>' +
-        '<button class="add-btn" title="下一首播放" onclick="event.stopPropagation();queuePodcastProgram(' + i + ')">+</button>' +
+        '<button class="add-btn" title="下一трека播放" onclick="event.stopPropagation();queuePodcastProgram(' + i + ')">+</button>' +
         '</div>';
     }).join('');
   $results.classList.add('show');
@@ -353,7 +353,7 @@ function renderPodcastPrograms() {
 function queuePodcastProgram(i) {
   var item = podcastPrograms[i]; if (!item) return;
   queueSongNext(item);
-  showToast('已设为下一首: ' + item.name);
+  showToast('已设为下一трека: ' + item.name);
 }
 function playPodcastProgram(i) {
   var item = podcastPrograms[i]; if (!item) return;
@@ -455,7 +455,7 @@ function songSourceTagHtml(song, opts) {
   var key = /^(netease|qq|kugou|qishui|spotify)$/.test(String(rawKey || '')) ? String(rawKey) : songProviderKey(song);
   var label = key === 'qq' ? 'QQ' : (key === 'kugou' ? 'KG' : (key === 'qishui' ? 'QS' : (key === 'spotify' ? 'SP' : 'NE')));
   if (opts.switcher) {
-    return '<button type="button" class="tag-source ' + key + ' control-source-chip" title="切换音源" aria-haspopup="true" onclick="toggleControlSourceSwitcher(event)">' + label + '</button>';
+    return '<button type="button" class="tag-source ' + key + ' control-source-chip" title="Режим воспроизведения音源" aria-haspopup="true" onclick="toggleControlSourceSwitcher(event)">' + label + '</button>';
   }
   return '<span class="tag-source ' + key + '">' + label + '</span>';
 }
@@ -532,7 +532,7 @@ function renderControlSourceSwitcher(matches) {
   matches = matches || {};
   el.classList.toggle('loading', !!controlSourceSwitcherState.loading);
   el.innerHTML =
-    '<div class="control-source-switcher-head"><span>切换音源</span><small>' + (controlSourceSwitcherState.loading ? '正在匹配' : '保留当前进度') + '</small></div>' +
+    '<div class="control-source-switcher-head"><span>Режим воспроизведения音源</span><small>' + (controlSourceSwitcherState.loading ? '正在匹配' : '保留当前进度') + '</small></div>' +
     '<div class="control-source-options">' +
     controlSourceProviders().map(function (provider) {
       var entry = matches[provider.key];
@@ -541,9 +541,9 @@ function renderControlSourceSwitcher(matches) {
       var active = provider.key === current;
       var ready = active || !!match;
       var providerLimited = !!(match && provider.key === 'spotify' && match.playable === false);
-      var cleanStatus = active ? '当前' : (providerLimited ? '匹配源' : (match ? '可切换' : (controlSourceSwitcherState.loading ? '检测中' : controlSourceIssueLabel(issue))));
-      var title = active ? '当前音源' : (providerLimited ? (provider.title + ': 播放将自动换源') : (match ? ('切换到 ' + provider.title) : (provider.title + ': ' + controlSourceIssueLabel(issue))));
-      var status = active ? '当前' : (providerLimited ? '匹配源' : (match ? '可切换' : (controlSourceSwitcherState.loading ? '检测中' : '无匹配')));
+      var cleanStatus = active ? '当前' : (providerLimited ? '匹配源' : (match ? '可Режим воспроизведения' : (controlSourceSwitcherState.loading ? '检测中' : controlSourceIssueLabel(issue))));
+      var title = active ? '当前音源' : (providerLimited ? (provider.title + ': 播放将自动Изменить源') : (match ? ('Режим воспроизведения到 ' + provider.title) : (provider.title + ': ' + controlSourceIssueLabel(issue))));
+      var status = active ? '当前' : (providerLimited ? '匹配源' : (match ? '可Режим воспроизведения' : (controlSourceSwitcherState.loading ? '检测中' : '无匹配')));
       return '<button type="button" class="control-source-option' + (active ? ' active' : '') + (!ready ? ' disabled' : '') + '" data-source-provider="' + provider.key + '" title="' + escHtml(title) + '" ' + (!ready ? 'disabled ' : '') + 'onclick="switchCurrentSongSource(\'' + provider.key + '\')">' +
         '<span class="tag-source ' + provider.key + '">' + provider.label + '</span>' +
         '<span class="control-source-option-title">' + provider.title + '</span>' +
@@ -610,7 +610,7 @@ function toggleControlSourceSwitcher(e) {
   }
   var song = currentControlSong();
   if (!song || song.type === 'local' || song.source === 'local' || song.localUrl || song.type === 'podcast') {
-    showToast('当前歌曲不支持切换音源');
+    showToast('Текущий трек недоступен в этом источнике звука');
     return;
   }
   var anchor = e && e.currentTarget ? e.currentTarget : null;
@@ -654,7 +654,7 @@ async function switchCurrentSongSource(provider) {
     }
     if (requestId !== controlSourceSwitcherState.requestId) return;
     if (!match) {
-      showSourceFallbackNotice('未找到可切换音源', controlSourceProviderTitle(provider) + ' 暂时没有匹配到同名同歌手版本。');
+      showSourceFallbackNotice('未找到可Режим воспроизведения音源', controlSourceProviderTitle(provider) + ' 暂时没有匹配到同名同Исполнитель版本。');
       showSourceFallbackNotice('该平台无正版音源', controlSourceProviderTitle(provider) + ': ' + controlSourceIssueLabel(issue));
       controlSourceSwitcherState.loading = false;
       renderControlSourceSwitcher(controlSourceSwitcherState.matches || {});
@@ -666,7 +666,7 @@ async function switchCurrentSongSource(provider) {
     closeControlSourceSwitcher();
     safeRenderQueuePanel('manual-source-switch', { scrollCurrent: miniQueueOpen });
     updateControlTrackInfo(playQueue[currentIdx]);
-    showSourceFallbackNotice('正在切换音源', (song.name || '当前歌曲') + ' -> ' + controlSourceProviderTitle(provider));
+    showSourceFallbackNotice('正在Режим воспроизведения音源', (song.name || '当前歌曲') + ' -> ' + controlSourceProviderTitle(provider));
     await playQueueAt(currentIdx, {
       manual: true,
       resumeAt: currentResumeSeconds(0),
@@ -680,7 +680,7 @@ async function switchCurrentSongSource(provider) {
       safeRenderQueuePanel('manual-source-switch-restore', { scrollCurrent: miniQueueOpen });
       updateControlTrackInfo(playQueue[currentIdx]);
     }
-    showSourceFallbackNotice('音源切换失败', '已保留当前播放队列，请稍后再试。');
+    showSourceFallbackNotice('音源Режим воспроизведения失败', '已保留当前播放队列，请稍后再试。');
   } finally {
     controlSourceSwitcherState.loading = false;
     forcePlaybackControlsInteractive();
@@ -725,8 +725,8 @@ function searchResultMetaText(song) {
   if (song.album) bits.push(song.album);
   if (songProviderKey(song) === 'qq' && !song.playable) bits.push('QQ 播放需会话/授权');
   if (songProviderKey(song) === 'kugou' && !song.playable) bits.push('酷狗播放需会话/授权');
-  if (songProviderKey(song) === 'qishui' && !song.playable) bits.push('汽水匹配源，播放会自动换源');
-  if (songProviderKey(song) === 'spotify' && !song.playable) bits.push('Spotify 匹配源，播放会自动换源');
+  if (songProviderKey(song) === 'qishui' && !song.playable) bits.push('汽水匹配源，播放会自动Изменить源');
+  if (songProviderKey(song) === 'spotify' && !song.playable) bits.push('Spotify 匹配源，播放会自动Изменить源');
   return bits.join('  ·  ') || songSourceLabel(song);
 }
 function searchResultMetaHtml(song, index) {
@@ -736,8 +736,8 @@ function searchResultMetaHtml(song, index) {
   if (song.album) bits.push(song.album);
   if (songProviderKey(song) === 'qq' && !song.playable) bits.push('QQ 播放需会话/授权');
   if (songProviderKey(song) === 'kugou' && !song.playable) bits.push('酷狗播放需会话/授权');
-  if (songProviderKey(song) === 'qishui' && !song.playable) bits.push('汽水匹配源，播放会自动换源');
-  if (songProviderKey(song) === 'spotify' && !song.playable) bits.push('Spotify 匹配源，播放会自动换源');
+  if (songProviderKey(song) === 'qishui' && !song.playable) bits.push('汽水匹配源，播放会自动Изменить源');
+  if (songProviderKey(song) === 'spotify' && !song.playable) bits.push('Spotify 匹配源，播放会自动Изменить源');
   var tail = bits.length ? (' · ' + escHtml(bits.join('  ·  '))) : '';
   if (!artist) return escHtml(searchResultMetaText(song));
   return '<button class="search-artist-link" type="button" onclick="event.stopPropagation();openSearchResultArtist(' + index + ')">' + escHtml(artist) + '</button>' + tail;
@@ -1147,7 +1147,7 @@ function searchSongResultHtml(s, i) {
       '</div>' +
       '<button class="song-action-btn' + (isSongLiked(s) ? ' liked' : '') + '" data-like-index="' + i + '" title="' + (isSongLiked(s) ? '取消红心' : '红心喜欢') + '" onclick="event.stopPropagation();toggleLikeSearchResult(' + i + ')">' + heartIconSvg() + '</button>' +
       '<button class="song-action-btn" title="收藏到歌单" onclick="event.stopPropagation();collectSearchResult(' + i + ')">' + playlistPlusIconSvg() + '</button>' +
-      '<button class="add-btn" title="下一首播放" onclick="event.stopPropagation();queueSearchResult(' + i + ')">+</button>' +
+      '<button class="add-btn" title="下一трека播放" onclick="event.stopPropagation();queueSearchResult(' + i + ')">+</button>' +
       '</div>';
 }
 function searchLoadMoreSentinelHtml() {
@@ -1155,7 +1155,7 @@ function searchLoadMoreSentinelHtml() {
   if (!remaining && !searchMusicRenderState.remoteHasMore && !searchMusicRenderState.loadingMore) return '';
   var label = searchMusicRenderState.loadingMore
     ? '正在加载更多歌曲…'
-    : (remaining ? ('继续滚动加载 · 当前还有 ' + remaining + ' 首') : '继续滚动加载更多歌曲');
+    : (remaining ? ('继续滚动加载 · 当前还有 ' + remaining + ' трека') : '继续滚动加载更多歌曲');
   return '<div class="search-empty search-load-more" data-search-load-more="1" role="status">' + label + '</div>';
 }
 function refreshSearchLoadMoreSentinel() {

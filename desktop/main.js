@@ -3092,7 +3092,7 @@ async function openSpotifyMusicLoginWindow(owner) {
           ok: false,
           provider: 'spotify',
           error: e.code || e.message || 'SPOTIFY_OAUTH_EXCHANGE_FAILED',
-          message: e.message || 'Spotify token 换取失败。',
+          message: e.message || 'Spotify token Изменить取失败。',
           missing: e.missing || [],
         });
       }
@@ -4629,6 +4629,22 @@ ipcMain.handle('mineradio-open-update-page', async (event, value) => {
     return { ok: true };
   } catch (e) {
     return { ok: false, error: e.message || 'OPEN_UPDATE_PAGE_FAILED' };
+  }
+});
+
+ipcMain.handle('mineradio-open-community-page', async (event, repository) => {
+  try {
+    if (!isTrustedMainWindowIpc(event)) return { ok: false, error: 'UNTRUSTED_SENDER' };
+    const targets = {
+      main: 'https://github.com/XxHuberrr/Mineradio',
+      ru: 'https://github.com/rolipayr15/MineradioRU',
+    };
+    const target = targets[String(repository || '').trim()];
+    if (!target) return { ok: false, error: 'INVALID_COMMUNITY_REPOSITORY' };
+    await shell.openExternal(target);
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: e.message || 'OPEN_COMMUNITY_PAGE_FAILED' };
   }
 });
 

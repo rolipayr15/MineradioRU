@@ -545,7 +545,7 @@ function saveUserFxArchives() {
   try {
     localStorage.setItem(USER_FX_ARCHIVE_STORE_KEY, JSON.stringify(userFxArchives));
   } catch (e) {
-    showToast('用户存档保存失败，本地存储空间可能不足');
+    showToast('用户存档保存失败，Локально存储空间可能不足');
   }
 }
 function hasStoredUserFxArchives() {
@@ -568,7 +568,7 @@ function formatUserArchiveTime(ts) {
   if (!ts) return '空槽位';
   var diff = Date.now() - ts;
   if (diff < 60000) return '刚刚保存';
-  if (diff < 3600000) return Math.max(1, Math.round(diff / 60000)) + ' 分钟前';
+  if (diff < 3600000) return Math.max(1, Math.round(diff / 60000)) + ' Минут前';
   var d = new Date(ts);
   function pad(v) { return String(v).padStart(2, '0'); }
   return pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
@@ -1155,7 +1155,7 @@ function renderUserFxArchives() {
     '<div class="user-archive-share-actions">' +
     '<button type="button" onclick="pasteUserFxArchiveShareCodeToBox()">从剪贴板粘贴</button>' +
     '<button type="button" onclick="importUserFxArchiveShareCodeFromBox()">导入短码</button>' +
-    '<button type="button" onclick="clearUserFxArchiveShareCodeBox()">清空</button>' +
+    '<button type="button" onclick="clearUserFxArchiveShareCodeBox()">Очистить</button>' +
     '</div>' +
     '</div>';
   var cards = userFxArchives.map(function (slot, index) {

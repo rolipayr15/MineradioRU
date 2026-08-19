@@ -136,12 +136,12 @@ function handleLoginEasterEggTap() {
     trigger.style.setProperty('--egg-tap-strength', String(loginEasterEggState.clickCount));
     replayLoginEasterEggClass(trigger, 'tap-feedback');
   }
-  var hints = [
+var hints = [
     '',
-    '它好像看了你一眼',
-    '再点几下',
-    '它开始有点紧张了',
-    '还差一下',
+    'Кажется, оно только что посмотрело на тебя...',
+    'Кликни еще пару раз',
+    'Плеер начинает немного нервничать...',
+    'Остался всего один клик!',
     ''
   ];
   if (hint) hint.textContent = hints[loginEasterEggState.clickCount] || '';
@@ -376,21 +376,21 @@ async function validateLoginEasterEggValue() {
     return;
   }
   if (result && result.error === 'LOGIN_EASTER_EGG_RESET_INCOMPLETE') {
-    setLoginEasterEggStatus('登录凭据清理未完成，请重启后再试', 'error');
+    setLoginEasterEggStatus('Очистка учетных данных не завершена. Пожалуйста, перезапустите программу и повторите попытку.', 'error');
     loginEasterEggState.validating = false;
     return;
   }
   if (result && result.error === 'LOGIN_EASTER_EGG_STATE_WRITE_FAILED') {
-    setLoginEasterEggStatus('无法保存解锁状态，请释放系统盘空间后重试', 'error');
+    setLoginEasterEggStatus('Не удалось сохранить статус разблокировки. Освободите место на системном диске и повторите попытку.', 'error');
     loginEasterEggState.validating = false;
     return;
   }
   loginEasterEggState.attempts += 1;
   if (loginEasterEggState.attempts === 3) {
     loginEasterEggState.prefixLocked = true;
-    setLoginEasterEggStatus('前两个字，已经替你想好了', 'hint');
+    setLoginEasterEggStatus('Первые два символа уже подставлены за тебя ;3', 'hint');
   } else {
-    setLoginEasterEggStatus(loginEasterEggState.attempts < 3 ? '愿望不太对' : '再想想后两个字', 'error');
+    setLoginEasterEggStatus(loginEasterEggState.attempts < 3 ? 'Не то желание...' : 'Подумай хорошенько над последними двумя буквами/словами', 'error');
   }
   replayLoginEasterEggClass(document.getElementById('login-easter-egg-wish'), 'error-shake');
   window.setTimeout(resetLoginEasterEggInputAfterError, 430);

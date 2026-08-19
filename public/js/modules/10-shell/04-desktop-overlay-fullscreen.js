@@ -1109,7 +1109,7 @@ function updateDesktopWallpaperRuntimeControls(status) {
     else toggle.removeAttribute('aria-disabled');
     toggle.title = !supported
       ? '当前系统不支持完整桌面模式'
-      : (attaching ? '正在切换完整桌面模式' : '把完整 Mineradio 放到 Windows 桌面；右上角控制器可显示或隐藏桌面图标，Esc 退出');
+      : (attaching ? '正在Режим воспроизведения完整桌面模式' : '把完整 Mineradio 放到 Windows 桌面；右上角控制器可显示或隐藏桌面图标，Esc 退出');
   }
   var opacity = document.getElementById('fx-wallpaperopacity');
   if (opacity) opacity.disabled = !supported;
@@ -1342,7 +1342,7 @@ function desktopWallpaperErrorLabel(error) {
     || code.indexOf('FULL_DESKTOP_WALLPAPER_ENGINE_HELPER_EXIT_TIMEOUT') >= 0
     || code.indexOf('WALLPAPER_ENGINE_DESKTOP_TRANSITION_BUSY') >= 0
     || code.indexOf('WALLPAPER_DESKTOP_PREVIEW') >= 0
-    || code.indexOf('WALLPAPER_ENGINE_SESSION_MISMATCH') >= 0) return 'Wallpaper Engine 项目未能安全切换到桌面预览';
+    || code.indexOf('WALLPAPER_ENGINE_SESSION_MISMATCH') >= 0) return 'Wallpaper Engine 项目未能安全Режим воспроизведения到桌面预览';
   if (code.indexOf('DESKTOP_MODE_DETACH') >= 0 || code.indexOf('FULL_DESKTOP_DETACH') >= 0) return '主窗口恢复失败';
   return '无法进入完整桌面模式';
 }
@@ -1597,7 +1597,7 @@ function toggleFullscreen() {
       updateFxInputs();
       saveLyricLayout({ user: true, reason: 'desktopLyricsClickThrough' });
       pushDesktopLyricsState(true);
-      showToast(locked ? '桌面歌词已锁定' : '桌面歌词可移动');
+      showToast(locked ? '桌面歌Текст已锁定' : '桌面歌Текст可移动');
     });
   }
   if (typeof api.onDesktopLyricsEnabledState === 'function') {
@@ -1607,7 +1607,7 @@ function toggleFullscreen() {
       fx.desktopLyrics = enabled;
       updateFxInputs();
       saveLyricLayout({ user: true, reason: 'desktopLyrics' });
-      showToast(enabled ? '桌面歌词已开启' : '桌面歌词已关闭');
+      showToast(enabled ? '桌面歌Текст已开启' : '桌面歌Текст已关闭');
     });
   }
 

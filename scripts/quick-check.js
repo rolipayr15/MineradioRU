@@ -1404,7 +1404,7 @@ function checkExternalUpdatePageBridgeGuard() {
     || !/openUpdateDownloadSource/.test(updateUiText)
     || !/update-download-source/.test(updateUiText)
     || !/desktopWindow\.openUpdatePage\(target\)/.test(updateUiText)
-    || !/软件不会在本地下载或应用补丁/.test(updateUiText)
+    || !/软件不会在Локально下载或应用补丁/.test(updateUiText)
   ) {
     fail('updates must resolve to an external download page and keep legacy local routes disabled');
   }
@@ -1452,7 +1452,7 @@ function checkLyricVerticalFloatToggleGuard() {
   if (!/lyricVerticalFloat: raw\.lyricVerticalFloat !== false/.test(persistenceText) || !/lyricVerticalFloat: fx\.lyricVerticalFloat !== false/.test(persistenceText) || !/'lyricVerticalFloat'/.test(archiveText)) {
     fail('lyric vertical float toggle must persist through autosave and preset archive');
   }
-  if (!/t-lyricVerticalFloat/.test(panelText) || !/key === 'lyricVerticalFloat'/.test(bindingText) || !/歌词上下浮动已/.test(bindingText)) {
+  if (!/t-lyricVerticalFloat/.test(panelText) || !/key === 'lyricVerticalFloat'/.test(bindingText) || !/歌Текст上下浮动已/.test(bindingText)) {
     fail('lyric vertical float toggle must sync panel state and show toggle feedback');
   }
   if (!/function lyricVerticalFloatEnabled/.test(stageText) || !/var lyricFloatAmp = verticalFloatOn \?/.test(stageText) || !/style === 'float' && verticalFloatOn/.test(stageText)) {
@@ -1518,7 +1518,7 @@ function checkQishuiProviderGuard() {
   if (!/汽水音乐已扫码登录/.test(accountLogoutText) || !/按账号权益播放/.test(accountLogoutText) || /本机汽水会话|OpenAPI token/.test(accountLogoutText)) {
     fail('Qishui account status must describe the official QR session without exposing legacy import modes');
   }
-  if (!/官方扫码 \/ 抖音确认/.test(indexText) || /本地会话 \/ PC 客户端/.test(indexText)) {
+  if (!/官方扫码 \/ 抖音确认/.test(indexText) || /Локально会话 \/ PC 客户端/.test(indexText)) {
     fail('Qishui login node must identify the official QR flow');
   }
   if (!/\/luna\/pc\/me/.test(qishuiText) || !/\/luna\/pc\/user\/playlist/.test(qishuiText) || !/\/luna\/pc\/playlist\/detail/.test(qishuiText) || !/function qishuiPcAppParams/.test(qishuiText) || !/pcApp: true/.test(qishuiText) || !/count: Math\.min\(100/.test(qishuiText) || /\/luna\/pc\/playlist\/detail[\s\S]{0,260}cnt:/.test(qishuiText)) {
@@ -1876,7 +1876,7 @@ async function checkProviderFallbackTerminalStateGuard() {
   if (!/SOURCE_FALLBACK_SEARCH_TIMEOUT_MS\s*=\s*6500/.test(fallbackText) || !/apiJson\(url, \{ timeoutMs: SOURCE_FALLBACK_SEARCH_TIMEOUT_MS \}\)/.test(fallbackText) || !/SOURCE_FALLBACK_RECOVERY_TIMEOUT_MS\s*=\s*20000/.test(fallbackText) || !/function awaitSourceFallbackBudget/.test(fallbackText) || (playbackText.match(/timeoutMs:\s*9000/g) || []).length < 6 || (playbackText.match(/timeoutMs:\s*14000/g) || []).length < 2 || (playbackText.match(/timeoutMs:\s*15000/g) || []).length < 2) {
     fail('fallback search, normal source resolution, and gapless source resolution must all be time-bounded');
   }
-  if (!/alternateData[\s\S]{0,220}!alternateData\.url[\s\S]{0,320}playQueue\[idx\] = committedCandidate/.test(fallbackText) || !/fallbackStarted === true[\s\S]{0,180}已自动切换音源/.test(fallbackText) || !/function restoreSourceFallbackQueueItem/.test(fallbackText)) {
+  if (!/alternateData[\s\S]{0,220}!alternateData\.url[\s\S]{0,320}playQueue\[idx\] = committedCandidate/.test(fallbackText) || !/fallbackStarted === true[\s\S]{0,180}已自动Режим воспроизведения音源/.test(fallbackText) || !/function restoreSourceFallbackQueueItem/.test(fallbackText)) {
     fail('fallback candidates must be URL-probed before provisional commit and only announce success after audible playback');
   }
   if (!/async function skipFailedQueueItem/.test(fallbackText) || !/skipShuffleOrder:\s*true/.test(fallbackText) || !/return nextStarted === true/.test(fallbackText) || !/function settleSourceFallbackTerminal/.test(fallbackText) || !/audio\.removeAttribute\('src'\)/.test(fallbackText) || !/audio\.__mineradioQueueItemKey = ''/.test(fallbackText)) {
@@ -2154,7 +2154,7 @@ async function checkProviderFallbackTerminalStateGuard() {
     return { songs: [{ provider: 'qq', id: 'qq-1', mid: 'qq-1', name: sourceSong.name, artist: sourceSong.artist }] };
   };
   const failedCandidateResult = await sandbox.tryAutoPlaybackFallback(sourceSong, { category: 'url_unavailable' }, 0, 10, {});
-  if (failedCandidateResult !== false || sandbox.playQueue[0].provider !== 'netease' || sandbox.childPlayCalls !== 1 || notices.some(item => item.title === '已自动切换音源')) {
+  if (failedCandidateResult !== false || sandbox.playQueue[0].provider !== 'netease' || sandbox.childPlayCalls !== 1 || notices.some(item => item.title === '已自动Режим воспроизведения音源')) {
     fail('a probed candidate whose media start fails must roll back the original source and never announce success');
   }
   delete sourceSong._lastPlaybackFailAt;
@@ -5330,7 +5330,7 @@ function checkFxConsoleWorkspaceGuard() {
   const stageLyrics = fs.readFileSync(stageLyricsPath, 'utf8');
   const starRiver = fs.readFileSync(starRiverPath, 'utf8');
   const maskTexture = fs.readFileSync(maskTexturePath, 'utf8');
-  const labels = ['常用', '界面', '歌词', '动效', '歌单架', '系统'];
+  const labels = ['常用', '界面', '歌Текст', '动效', '歌单架', '系统'];
   if (!labels.every(label => workspace.includes(`label: '${label}'`))) fail('task-first visual console tabs are incomplete');
   if (!loader.includes("js/modules/07-fx/09-console-workspace.js")) fail('visual console workspace module is not loaded');
   if (!/data-console-layout['"],\s*['"]task-first-v2/.test(workspace) && !/setAttribute\('data-console-layout', 'task-first-v2'\)/.test(workspace)) fail('visual console layout marker is missing');

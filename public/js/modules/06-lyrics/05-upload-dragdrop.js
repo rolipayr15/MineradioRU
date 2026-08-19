@@ -26,14 +26,14 @@ function firstImageUploadFile(files) {
 }
 function localSongFromAudioFile(file) {
   var rel = String(file.webkitRelativePath || file.name || '');
-  var filename = String(file.name || rel || '本地音乐');
+  var filename = String(file.name || rel || 'Локально音乐');
   var title = filename.replace(/\.[^.]+$/, '');
   return hydrateCustomCover({
     type: 'local',
     source: 'local',
     provider: 'local',
-    name: title || '本地音乐',
-    artist: '本地文件',
+    name: title || 'Локально音乐',
+    artist: 'Локально文件',
     album: rel && rel !== filename ? rel.split(/[\\/]/).slice(0, -1).join(' / ') : '',
     localKey: [rel || filename, file.size || 0, file.lastModified || 0].join(':'),
     localUrl: URL.createObjectURL(file),
@@ -130,8 +130,8 @@ async function restorePersistedLocalLibrary() {
   updateControlTrackInfo(current);
   var titleEl = document.getElementById('thumb-title');
   var artistEl = document.getElementById('thumb-artist');
-  if (titleEl) titleEl.textContent = current.name || current.title || '本地音乐';
-  if (artistEl) artistEl.textContent = current.artist || '本地文件';
+  if (titleEl) titleEl.textContent = current.name || current.title || 'Локально音乐';
+  if (artistEl) artistEl.textContent = current.artist || 'Локально文件';
   var thumbWrap = document.getElementById('thumb-wrap');
   if (thumbWrap) thumbWrap.classList.add('visible');
   if (current.cover) {
@@ -265,7 +265,7 @@ function importLocalAudioSongs(songs, opts) {
   safeShelfRebuild('local-import', true);
   forcePlaybackControlsInteractive();
   updateEmptyHomeVisibility({ forceLoad: false });
-  showToast(songs.length > 1 ? ('已导入 ' + songs.length + ' 首本地音乐') : '正在播放本地音乐');
+  showToast(songs.length > 1 ? ('已导入 ' + songs.length + ' трекаЛокально音乐') : 'ВоспроизводитсяЛокально音乐');
   Promise.resolve(playQueueAt(0, { manual: true })).then(function () {
     if (opts.coverFile && currentIdx === 0 && playQueue[0]) {
       loadCoverFromFile(opts.coverFile, { trackToken: trackSwitchToken, deferHeavy: false, delay: 0, timeout: 260 });
@@ -292,7 +292,7 @@ async function handleFiles(files, opts) {
     var songs;
     var persistenceFailed = false;
     if (canUsePersistentLocalMusicLibrary()) {
-      showToast('正在读取 ' + audioFiles.length + ' 首本地音乐的标签与歌词…');
+      showToast('正在读取 ' + audioFiles.length + ' трекаЛокально音乐的标签与歌Текст…');
       try {
         var persisted = await importPersistentLocalAudioFiles(audioFiles);
         songs = persisted && persisted.tracks;
@@ -309,7 +309,7 @@ async function handleFiles(files, opts) {
     if (!songs || !songs.length) songs = audioFiles.map(localSongFromAudioFile);
     importLocalAudioSongs(songs, { coverFile: songs.length === 1 ? imgFile : null, mode: opts.mode || '' });
     if (persistenceFailed) {
-      setTimeout(function () { showToast('本地曲库保存失败：这些歌曲仅本次可用，重启后不会保留'); }, 260);
+      setTimeout(function () { showToast('Локально曲库保存失败：这些歌曲仅本次可用，重启后不会保留'); }, 260);
     }
     return;
   }

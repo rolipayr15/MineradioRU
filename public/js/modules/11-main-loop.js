@@ -503,7 +503,7 @@ function animate() {
     }
     updateCinemaDynamics(Math.max(re, cinemaProfileSample.energy * 0.92), Math.max(rb, cinemaProfileSample.low * 0.90));
     updateCinemaTrackProfile(cinemaProfileSample);
-    // 歌词阳光溢光: 独立于律动强度, 看持续能量 + 中高频抬升, 更像副歌/高音段落而不是单个鼓点.
+    // 歌Текст阳光溢光: 独立于律动强度, 看持续能量 + 中高频抬升, 更像副歌/高音段落而不是单个鼓点.
     var sunEnergy = clamp01((smoothEnergy - 0.18) / 0.38);
     var sunVoice = clamp01((voc - 0.11) / 0.34);
     var sunMelody = clamp01((smoothMid - 0.16) / 0.27);
@@ -580,7 +580,7 @@ function animate() {
   uniforms.uParticleDim.value += (shelfDimTarget - uniforms.uParticleDim.value) * Math.min(1, shelfDimEase * Math.max(1, dt * 60));
   if (typeof updateBackgroundStarRiverState === 'function') updateBackgroundStarRiverState(dt, false);
 
-  // 通用转场脉冲: 只作为切换预设时的短促提亮。
+  // 通用转场脉冲: 只作为Режим воспроизведения预设时的短促提亮。
   uniforms.uBurstAmt.value *= 0.90;
   tickPresetTransition();
   if (perfProbe && perfProbe.markSince) perfProbe.markSince('visual.uniforms-preset', visualUniformPerfStart);

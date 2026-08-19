@@ -550,7 +550,7 @@ function setCustomBackgroundMedia(media, silent) {
 }
 function readBackgroundImageFile(file) {
   if (!file || !/^image\//i.test(file.type || '')) {
-    showToast('请选择图片文件');
+    showToast('请Выбрать图片文件');
     return;
   }
   var reader = new FileReader();
@@ -583,7 +583,7 @@ function readBackgroundImageFile(file) {
 }
 function readBackgroundVideoFile(file) {
   if (!file || !/^video\//i.test(file.type || '')) {
-    showToast('请选择视频文件');
+    showToast('请Выбрать视频文件');
     return;
   }
   var id = 'bg-video-' + Date.now() + '-' + Math.random().toString(16).slice(2);
@@ -593,7 +593,7 @@ function readBackgroundVideoFile(file) {
   }).catch(function (err) {
     console.warn('background video store failed:', err);
     if ((file.size || 0) > 18 * 1024 * 1024) {
-      showToast('视频较大，当前环境无法保存，请换小一点的视频');
+      showToast('视频较大，当前环境无法保存，请Изменить小一点的视频');
       return;
     }
     var reader = new FileReader();
@@ -609,7 +609,7 @@ function readBackgroundMediaFile(file) {
   if (!file) return;
   if (/^image\//i.test(file.type || '')) readBackgroundImageFile(file);
   else if (/^video\//i.test(file.type || '')) readBackgroundVideoFile(file);
-  else showToast('请选择图片或视频文件');
+  else showToast('请Выбрать图片或视频文件');
 }
 function defaultUiAccentColor() {
   return normalizeHexColor(fxDefaults.uiAccentColor || '#ffffff', '#ffffff');

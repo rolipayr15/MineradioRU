@@ -73,7 +73,7 @@ async function run() {
   assert.strictEqual(status.capabilities.search, true, 'fresh installations must retain the Qishui metadata search fallback');
 
   const ranked = qishui._test.rankQishuiPublicSongs([
-    { name: '无关歌曲', artist: '无关歌手', album: '' },
+    { name: '无关歌曲', artist: '无关Исполнитель', album: '' },
     { name: '晴天', artist: '周杰伦', album: '叶惠美' },
     { name: '另一个结果', artist: '周杰伦', album: '' },
   ], '晴天 周杰伦', 5);
@@ -91,7 +91,7 @@ async function run() {
           list: Array.from({ length: count }, (_, index) => ({
             item_id: 'paged-' + index,
             title: '分页测试 ' + index,
-            author_info: { id: 'artist', name: '分页歌手' },
+            author_info: { id: 'artist', name: '分页Исполнитель' },
           })),
         },
       },

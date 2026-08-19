@@ -21,7 +21,7 @@
 ## 公开更新说明
 
 - 优化 Wallpaper Engine 壁纸与全屏模式的兼容性。
-- 改进登录、账号状态和本地曲库体验。
+- 改进登录、账号状态和Локально曲库体验。
 - 提升长时间运行与连续播放稳定性。
 
 ## 发布资产
@@ -31,7 +31,7 @@
 - `dist/latest.yml`
 - `dist/Mineradio-2.1.0-SHA256SUMS.txt`
 
-GitHub Release 只上传 `dist/Mineradio-2.1.0-Setup.exe`；其余产物只用于本地验收和校验，不作为 Release 资产发布。
+GitHub Release 只上传 `dist/Mineradio-2.1.0-Setup.exe`；其余产物只用于Локально验收和校验，不作为 Release 资产发布。
 
 ## 发布前检查
 

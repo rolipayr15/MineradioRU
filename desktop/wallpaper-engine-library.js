@@ -603,7 +603,7 @@ class WallpaperEngineLibrary {
 
   async addManualRoot(root) {
     root = normalizeAbsolutePath(root);
-    if (!root || !await isDirectory(root)) throw new Error('请选择存在的 Wallpaper Engine 项目目录');
+    if (!root || !await isDirectory(root)) throw new Error('请Выбрать存在的 Wallpaper Engine 项目目录');
     const projectDirs = await manualProjectDirectories(root);
     if (!projectDirs.length) throw new Error('所选目录中没有识别到 project.json');
     if (!this.manualRoots.some((value) => pathKey(value) === pathKey(root))) {
@@ -617,12 +617,12 @@ class WallpaperEngineLibrary {
   async addManualProjectFile(file) {
     file = normalizeAbsolutePath(file);
     const stat = file ? await statSafe(file) : null;
-    if (!stat || !stat.isFile()) throw new Error('请选择存在的 Wallpaper Engine 项目文件');
+    if (!stat || !stat.isFile()) throw new Error('请Выбрать存在的 Wallpaper Engine 项目文件');
     if (path.basename(file).toLowerCase() === 'project.json') {
       return this.addManualRoot(path.dirname(file));
     }
     if (!SCENE_PACKAGE_EXTENSIONS.has(path.extname(file).toLowerCase())) {
-      throw new Error('请选择 project.json 或 Wallpaper Engine 场景包（.pkg/.pak）');
+      throw new Error('请Выбрать project.json 或 Wallpaper Engine 场景包（.pkg/.pak）');
     }
     const scenePackage = await validateScenePackage(file);
     if (!scenePackage) {
@@ -667,7 +667,7 @@ class WallpaperEngineLibrary {
           const key = pathKey(container);
           if (seen.has(key)) continue;
           seen.add(key);
-          output.push({ root: container, kind: /workshop[\\/]content/i.test(container) ? 'workshop' : 'local', label: /workshop[\\/]content/i.test(container) ? 'Steam 创意工坊' : 'Wallpaper Engine 本地项目', direct: true });
+          output.push({ root: container, kind: /workshop[\\/]content/i.test(container) ? 'workshop' : 'local', label: /workshop[\\/]content/i.test(container) ? 'Steam 创意工坊' : 'Wallpaper Engine Локально项目', direct: true });
         }
       }
     }

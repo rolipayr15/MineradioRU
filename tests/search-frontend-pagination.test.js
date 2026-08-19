@@ -196,8 +196,8 @@ test('ranking favors exact originals while preserving explicitly requested versi
 
   const original = { name: '晴天', artist: '周杰伦', album: '叶惠美', popularity: 80 };
   const live = { name: '晴天 (Live)', artist: '周杰伦', album: '演唱会', popularity: 95 };
-  const cover = { name: '晴天（翻唱）', artist: '其他歌手', album: '翻唱集', popularity: 100 };
-  const unrelated = { name: '雨天', artist: '其他歌手', album: '合集', popularity: 100 };
+  const cover = { name: '晴天（翻唱）', artist: '其他Исполнитель', album: '翻唱集', popularity: 100 };
+  const unrelated = { name: '雨天', artist: '其他Исполнитель', album: '合集', popularity: 100 };
   assert.ok(sandbox.score(original, '晴天 周杰伦', 0) > sandbox.score(cover, '晴天 周杰伦', 0));
   assert.ok(sandbox.score(original, '晴天', 0) > sandbox.score(unrelated, '晴天', 0));
   assert.ok(sandbox.score(live, '晴天 live', 0) > sandbox.score(original, '晴天 live', 0));

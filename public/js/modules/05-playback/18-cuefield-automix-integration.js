@@ -38,9 +38,9 @@ function cuefieldAutoMixStatusText(status) {
   return {
     disabled: '已关闭',
     waiting: '等待播放',
-    preparing: '正在分析下一首',
+    preparing: '正在分析下一трека',
     'waiting-beatmap': '正在准备节拍图',
-    'missing-audio': '下一首暂不可用',
+    'missing-audio': '下一трека暂不可用',
     fallback: '本组歌曲暂不适合混音',
     ready: '过渡已准备',
     handoff: '正在自动过渡',
@@ -290,7 +290,7 @@ function toggleCuefieldAutoMix() {
   if (runtime) runtime.setEnabled(cuefieldAutoMixEnabled);
   if (!cuefieldAutoMixEnabled) resetCuefieldAutoMix('disabled');
   updateCuefieldAutoMixUi(cuefieldAutoMixEnabled ? 'waiting' : 'disabled');
-  showToast(cuefieldAutoMixEnabled ? 'Cuefield AutoMix 已开启：只在当前队列自动过渡' : 'Cuefield AutoMix 已关闭');
+  showToast(cuefieldAutoMixEnabled ? 'Cuefield AutoMix Включено: автоматический переход только в рамках текущей очереди.' : 'Cuefield AutoMix Закрыт');
   if (cuefieldAutoMixEnabled) scheduleCuefieldAutoMixPrepare(trackSwitchToken, currentIdx, 720);
 }
 
@@ -342,7 +342,7 @@ async function runCuefieldAutoMixPrepare(token, currentIndex, nextIndex, attempt
   updateCuefieldAutoMixUi(result && result.status);
   if (result && result.status === 'ready' && result.pending) {
     prepareCuefieldPendingAudio(result.pending);
-    showToast('Cuefield 已准备下一首过渡');
+    showToast('Cuefield 已准备下一трека过渡');
     return;
   }
   if (result && (result.status === 'waiting-beatmap' || result.status === 'missing-audio' || result.status === 'busy') && attempt < 3) {
@@ -618,7 +618,7 @@ function showCuefieldFeedback(context) {
   cuefieldFeedbackState.submitted = false;
   var root = document.getElementById('cuefield-feedback');
   var meta = document.getElementById('cuefield-feedback-meta');
-  if (meta) meta.textContent = (context.pair.fromTitle || '当前歌曲') + ' → ' + (context.pair.toTitle || '下一首');
+  if (meta) meta.textContent = (context.pair.fromTitle || '当前歌曲') + ' → ' + (context.pair.toTitle || '下一трека');
   if (root) root.classList.add('show');
   if (cuefieldFeedbackState.timer) clearTimeout(cuefieldFeedbackState.timer);
   cuefieldFeedbackState.timer = setTimeout(function () { if (root) root.classList.remove('show'); }, 30000);
@@ -732,7 +732,7 @@ async function executeCuefieldAutoMix(pending) {
     if (cuefieldActiveTransitionContext === transitionContext) cuefieldActiveTransitionContext = null;
     updateCuefieldAutoMixUi('error');
     recoverCuefieldAutoMixEndedOutgoing(pending, transitionContext, 'error');
-    showToast('Cuefield AutoMix：下一首预载失败');
+    showToast('Cuefield AutoMix：下一трека预载失败');
     return;
   }
   var feedback = cuefieldFeedbackContext(pending);

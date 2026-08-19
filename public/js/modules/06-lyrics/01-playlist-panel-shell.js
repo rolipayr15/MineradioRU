@@ -270,7 +270,7 @@ function renderMiniQueuePanel(opts) {
   if (!$list || !$count) return;
   var total = playQueue.length;
   var expectedTotal = queueHydrationExpectedTotal();
-  $count.textContent = total ? ((expectedTotal > total ? (total + '/' + expectedTotal) : total) + ' 首' + (currentIdx >= 0 ? ' · 正在播放 ' + (currentIdx + 1) : '')) : '0 首';
+  $count.textContent = total ? ((expectedTotal > total ? (total + '/' + expectedTotal) : total) + ' трека' + (currentIdx >= 0 ? ' · Воспроизводится ' + (currentIdx + 1) : '')) : '0 трека';
   if (!miniQueueOpen && !opts.animate && !opts.scrollCurrent) return;
   if (!total) {
     $list.innerHTML = '<div class="mini-queue-empty">队列为空，先搜索或打开歌单</div>';
@@ -285,7 +285,7 @@ function renderMiniQueuePanel(opts) {
     return '<div class="mini-queue-item' + (i === currentIdx ? ' now' : '') + '" data-queue-index="' + i + '" onclick="if(window.__mineradioSuppressReorderClick)return;playQueueAt(' + i + ')">' +
       imgTag +
       '<div class="mini-queue-info"><div class="mini-queue-name">' + escHtml(song.name) + '</div><div class="mini-queue-sub">' + escHtml(song.artist || '') + '</div></div>' +
-      '<button class="mini-queue-remove mini-queue-next" onclick="event.stopPropagation();queueIndexNext(' + i + ')" title="下一首播放">下</button>' +
+      '<button class="mini-queue-remove mini-queue-next" onclick="event.stopPropagation();queueIndexNext(' + i + ')" title="下一трека播放">下</button>' +
       '<button class="mini-queue-remove" onclick="event.stopPropagation();removeFromQueue(' + i + ')" title="移除">×</button>' +
       '</div>';
   }).join('') + queueVirtualSpacerHtml(windowInfo.bottom) + queueHydrationFooterHtml(true);
@@ -448,8 +448,8 @@ function renderQueuePanel(opts) {
   opts = opts || {};
   var $ql = document.getElementById('queue-list');
   var seq = ++queueRenderSeq;
-  if (!playQueue.length) {
-    $ql.innerHTML = '<div style="text-align:center;padding:24px 0;color:rgba(255,255,255,.32);font-size:11.5px">队列为空，搜索后点 + 设为下一首</div>';
+if (!playQueue.length) {
+    $ql.innerHTML = '<div style="text-align:center;padding:24px 0;color:rgba(255,255,255,.32);font-size:11.5px">Очередь пуста. Найдите трек и нажмите «+», чтобы добавить его</div>';
     renderMiniQueuePanel();
     var panel = document.getElementById('playlist-panel');
     if (panel && (panel.classList.contains('show') || panel.classList.contains('peek')) && queueViewTab === 'queue') switchPlaylistTab('playlists', { save: false });
@@ -465,10 +465,10 @@ function renderQueuePanel(opts) {
     var imgTag = thumb ? '<img src="' + thumb + '" alt="" loading="lazy" decoding="async" onerror="this.style.opacity=0.2">' : '<div style="width:38px;height:38px;border-radius:6px;background:rgba(255,255,255,.06);flex-shrink:0"></div>';
     return '<div class="queue-item' + (i === currentIdx ? ' now' : '') + '" data-queue-index="' + i + '" onclick="if(window.__mineradioSuppressReorderClick)return;playQueueAt(' + i + ')">' +
       imgTag +
-      '<div class="qi-info"><div class="qi-name">' + escHtml(song.name) + '</div><div class="qi-sub"><button class="queue-artist-link" type="button" onclick="event.stopPropagation();openQueueArtist(' + i + ')">' + escHtml(song.artist || '未知歌手') + '</button></div></div>' +
+      '<div class="qi-info"><div class="qi-name">' + escHtml(song.name) + '</div><div class="qi-sub"><button class="queue-artist-link" type="button" onclick="event.stopPropagation();openQueueArtist(' + i + ')">' + escHtml(song.artist || '未知Исполнитель') + '</button></div></div>' +
       '<div class="qi-act">' +
       '<button class="' + (isSongLiked(song) ? 'liked' : '') + '" onclick="event.stopPropagation();toggleLikeQueueIndex(' + i + ')" title="' + (isSongLiked(song) ? '取消红心' : '红心喜欢') + '">' + heartIconSvg() + '</button>' +
-      '<button class="queue-next" onclick="event.stopPropagation();queueIndexNext(' + i + ')" title="下一首播放">下</button>' +
+      '<button class="queue-next" onclick="event.stopPropagation();queueIndexNext(' + i + ')" title="下一трека播放">下</button>' +
       '<button onclick="event.stopPropagation();collectQueueIndex(' + i + ')" title="收藏到歌单">' + playlistPlusIconSvg() + '</button>' +
       '<button onclick="event.stopPropagation();removeFromQueue(' + i + ')" title="移除">×</button>' +
       '</div>' +
@@ -608,9 +608,9 @@ function requestNextPlaylistCatalogPage(reason) {
 async function refreshUserPlaylists(force) {
   if (!loginStatus.loggedIn && !qqLoginStatus.loggedIn && !kugouLoginStatus.loggedIn && !qishuiLoginStatus.loggedIn && !spotifyLoginStatus.loggedIn) {
     resetPlaylistPanelRenderLimit();
-    document.getElementById('pl-list').innerHTML = '<div style="text-align:center;padding:24px 0;color:rgba(255,255,255,.32);font-size:11.5px">登录后显示个人歌单</div>';
+    document.getElementById('pl-list').innerHTML = '<div style="text-align:center;padding:24px 0;color:rgba(255,255,255,.32);font-size:11.5px">Войдите в аккаунт, чтобы увидеть свои плейлисты</div>';
     var podcastListLoggedOut = document.getElementById('podcast-list');
-    if (podcastListLoggedOut) podcastListLoggedOut.innerHTML = '<div style="text-align:center;padding:14px 0;color:rgba(255,255,255,.28);font-size:11.5px">登录后显示我的播客</div>';
+    if (podcastListLoggedOut) podcastListLoggedOut.innerHTML = '<div style="text-align:center;padding:14px 0;color:rgba(255,255,255,.28);font-size:11.5px">Войдите в аккаунт, чтобы увидеть свои подкасты</div>';
     return;
   }
   var catalogNeedsNewProvider = playlistCatalogSyncState.loading && ['netease', 'qq', 'kugou', 'qishui', 'spotify'].some(function (provider) {

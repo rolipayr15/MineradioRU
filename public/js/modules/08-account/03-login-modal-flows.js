@@ -689,7 +689,7 @@ function openQishuiPublicSearch() {
       try { input.focus({ preventScroll: true }); } catch (e) { try { input.focus(); } catch (_) { } }
     }, 60);
   }
-  showToast('汽水搜索已切换为匹配源');
+  showToast('汽水搜索已Режим воспроизведения为匹配源');
 }
 function updateLoginProviderUi() {
   var meta = platformMeta(loginProvider);
@@ -730,7 +730,7 @@ function updateLoginProviderUi() {
     if (spotifyBtn) spotifyBtn.classList.toggle('active', true);
     if (title) title.textContent = '连接 Spotify';
     if (desc) desc.innerHTML = canOpenSpotifyOAuth
-      ? '粘贴 <b>Spotify Client ID</b> 后保存并授权，用于同步 Premium/Free 状态、歌单和 Liked Songs；播放仍按匹配源自动换源。'
+      ? '粘贴 <b>Spotify Client ID</b> 后保存并授权，用于同步 Premium/Free 状态、歌单和 Liked Songs；播放仍按匹配源自动Изменить源。'
       : '当前环境不支持桌面授权桥；请在 Mineradio 桌面版中连接 Spotify。';
     if (shell) {
       shell.classList.add('web-login-preview');
@@ -1065,7 +1065,7 @@ async function openSpotifyWebLogin() {
   var api = window.desktopWindow;
   if (!api || !api.isDesktop || typeof api.openSpotifyMusicLogin !== 'function') {
     updateLoginProviderUi();
-    if (statusEl) { statusEl.textContent = '当前环境不支持 Spotify 本地授权桥，请使用 Mineradio 桌面版。'; statusEl.className = 'fail'; }
+    if (statusEl) { statusEl.textContent = '当前环境不支持 Spotify Локально授权桥，请使用 Mineradio 桌面版。'; statusEl.className = 'fail'; }
     return;
   }
   if (!spotifyLoginStatus.oauthConfigured && !spotifyLoginStatus.tokenConfigured) {
@@ -1236,7 +1236,7 @@ async function openQQWebLogin() {
       showToast('QQ 账号态已同步，播放授权未完成');
       return;
     }
-    if (statusEl) { statusEl.textContent = qqPlaybackReady ? qqLoginStatusText(qqLoginStatus) : 'QQ 账号已同步，播放授权不完整，部分歌曲会自动换源'; statusEl.className = 'scan'; }
+    if (statusEl) { statusEl.textContent = qqPlaybackReady ? qqLoginStatusText(qqLoginStatus) : 'QQ 账号已同步，播放授权不完整，部分歌曲会自动Изменить源'; statusEl.className = 'scan'; }
     setTimeout(function () {
       closeLoginModal();
       showToast((qqPlaybackReady ? 'QQ 音乐已登录: ' : 'QQ 账号已同步: ') + (info.nickname || info.userId || ''));
@@ -1340,7 +1340,7 @@ async function submitQQCookieLogin() {
     renderUserBtn();
     refreshUserPlaylists(true);
     var manualPlaybackReady = !!info.playbackKeyReady;
-    if (statusEl) { statusEl.textContent = manualPlaybackReady ? (isKugou ? '酷狗音乐会话已保存' : qqLoginStatusText(qqLoginStatus)) : (isKugou ? '酷狗账号已同步，播放授权不完整，部分歌曲可能需要重登' : 'QQ 账号已同步，播放授权不完整，部分歌曲会自动换源'); statusEl.className = 'scan'; }
+    if (statusEl) { statusEl.textContent = manualPlaybackReady ? (isKugou ? '酷狗音乐会话已保存' : qqLoginStatusText(qqLoginStatus)) : (isKugou ? '酷狗账号已同步，播放授权不完整，部分歌曲可能需要重登' : 'QQ 账号已同步，播放授权不完整，部分歌曲会自动Изменить源'); statusEl.className = 'scan'; }
     setManualCookieOpenForProvider(activeAccountProvider, false);
     offerLoginCookieExport(activeAccountProvider, info);
     setTimeout(function () {

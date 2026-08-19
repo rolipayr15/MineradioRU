@@ -166,7 +166,7 @@ const qishuiAudioDecryptCache = new Map();
 const QISHUI_AUDIO_DECRYPT_CACHE_MAX_BYTES = 96 * 1024 * 1024;
 let qishuiAudioDecryptCacheBytes = 0;
 const UPDATE_FALLBACK_NOTES = [
-  '修复多行歌词与 3D 歌单架的显示层级',
+  '修复多行歌Текст与 3D 歌单架的显示层级',
   '优化更新入口与安装包获取流程',
 ];
 const OPEN_METEO_FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
@@ -839,7 +839,7 @@ function classifyUpdateError(err) {
     return { code: code || 'UPDATE_DNS_FAILED', reason: '域名解析失败，可能是当前网络无法连接该更新线路。', detail };
   }
   if (/ECONNRESET|ECONNREFUSED|socket|network/i.test(code + ' ' + message)) {
-    return { code: code || 'UPDATE_NETWORK_FAILED', reason: '网络连接被中断，已尝试切换更新线路。', detail };
+    return { code: code || 'UPDATE_NETWORK_FAILED', reason: '网络连接被中断，已尝试Режим воспроизведения更新线路。', detail };
   }
   const http = message.match(/\bHTTP[_\s-]?(\d{3})\b/i) || message.match(/\b(\d{3})\b/);
   if (http) {
@@ -940,7 +940,7 @@ function parseLatestYmlUpdateInfo(text, reason) {
       patch: null,
       patchAvailable: false,
       summary: '发现新版本，请前往发布页面获取安装包。',
-      notes: ['更新入口已改为浏览器外部下载', 'Mineradio 不再在本地下载或应用补丁'],
+      notes: ['更新入口已改为浏览器外部下载', 'Mineradio 不再在Локально下载或应用补丁'],
     },
     source: 'latest-yml',
     reason: reason || '',
@@ -1205,7 +1205,7 @@ function classifyNeteasePlaybackRestriction(lastData, loginInfo) {
     return playbackRestriction('netease', 'copyright_unavailable', '当前网易云版本没有返回完整音源，已尝试匹配站内同一录音版本', 'switch_source', { code, fee });
   }
   if (code === 404 || code === 403) {
-    return playbackRestriction('netease', 'copyright_unavailable', '网易云版权暂不可播，换源或稍后重试会更稳', 'switch_source', { code, fee });
+    return playbackRestriction('netease', 'copyright_unavailable', '网易云版权暂不可播，Изменить源或稍后重试会更稳', 'switch_source', { code, fee });
   }
   return playbackRestriction('netease', 'url_unavailable', '网易云没有返回可播放地址，可能是版权、会员或地区限制', loggedIn ? 'switch_source' : 'login', { code, fee });
 }
@@ -1222,7 +1222,7 @@ function classifyQQPlaybackRestriction(info, session) {
     return playbackRestriction('qq', 'login_required', 'QQ 音乐当前只拿到了网页登录状态，还缺少播放授权，请重新打开官方 QQ 音乐登录窗口完成授权', 'login', { code, rawMessage: rawMsg, missingPlaybackKey: true });
   }
   if (code === 104003) {
-    return playbackRestriction('qq', 'copyright_unavailable', 'QQ 音乐没有给当前版本返回播放地址，通常是版权、会员或官方版本限制，可以换一个搜索结果或切到网易云源', 'switch_source', { code, rawMessage: rawMsg });
+    return playbackRestriction('qq', 'copyright_unavailable', 'QQ 音乐没有给当前版本返回播放地址，通常是版权、会员或官方版本限制，可以Изменить一个搜索结果或切到网易云源', 'switch_source', { code, rawMessage: rawMsg });
   }
   if (/vip|会员|付费|购买|数字专辑|专辑|pay/.test(lower + rawMsg)) {
     return playbackRestriction('qq', 'paid_required', 'QQ 音乐歌曲需要会员、购买或数字专辑权限', 'upgrade', { code, rawMessage: rawMsg });
@@ -2438,7 +2438,7 @@ function isLowSignalWeatherSong(song) {
   ].filter(Boolean).join(' ')).toLowerCase();
   if (!text) return true;
   if (/(^|[\s\-_/（(])ai(?:\s*(歌|歌曲|音乐|cover|翻唱|生成|作曲|演唱|女声|男声)|$|[\s\-_/）)])/i.test(text)) return true;
-  if (/suno|udio|人工智能|生成歌曲|ai歌曲|虚拟歌手|测试音频|demo|beat\s*maker/i.test(text)) return true;
+  if (/suno|udio|人工智能|生成歌曲|ai歌曲|虚拟Исполнитель|测试音频|demo|beat\s*maker/i.test(text)) return true;
   if (/翻自|翻唱|cover|remix|伴奏|纯音乐|钢琴|dj|live\s*版|live版|唯美钢琴|karaoke|instrumental/i.test(text)) return true;
   if (/白噪音|雨声|睡眠|助眠|冥想|疗愈频率|环境音|自然声音|asmr/i.test(text)) return true;
   if (/[（(](r&b|lofi|jazz|dj|edm|trap|remix|伴奏|纯音乐|钢琴|电子|治愈|古风|女声|男声|英文|中文版|抖音|ai)[）)]/i.test(text)) return true;
@@ -4784,7 +4784,7 @@ const server = http.createServer(async (req, res) => {
       ok: false,
       externalOnly: true,
       error: 'UPDATE_EXTERNAL_ONLY',
-      message: 'Mineradio 已停用客户端本地下载与快速补丁，请使用外部下载页面。',
+      message: 'Mineradio 已停用客户端Локально下载与快速补丁，请使用外部下载页面。',
     }, 410);
     return;
   }
@@ -6389,7 +6389,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // ---------- 歌词 ----------
+  // ---------- 歌Текст ----------
   function lyricNodeText(body, key) {
     return body && body[key] && typeof body[key].lyric === 'string' ? body[key].lyric : '';
   }
@@ -6509,7 +6509,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // ---------- 歌手主页 / 热门歌曲 ----------
+  // ---------- Исполнитель主页 / 热门歌曲 ----------
   if (pn === '/api/artist/detail') {
     try {
       const id = url.searchParams.get('id');

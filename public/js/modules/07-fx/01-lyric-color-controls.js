@@ -41,7 +41,7 @@ function updateLyricHighlightControls() {
     ? color
     : lyricPaletteColorToHex(pal.highlight || pal.primary || color, '#fff0b8', 0.48);
   if (picker) picker.value = tone;
-  if (value) value.textContent = fx.lyricHighlightMode === 'custom' ? color.toUpperCase() : '跟随歌词';
+  if (value) value.textContent = fx.lyricHighlightMode === 'custom' ? color.toUpperCase() : '跟随歌Текст';
   if (autoBtn) autoBtn.classList.toggle('active', fx.lyricHighlightMode !== 'custom');
 }
 function lyricPaletteColorToHex(value, fallback, minLum) {
@@ -91,7 +91,7 @@ function updateLyricGlowControls() {
   });
   if (glowEnableBtn) {
     glowEnableBtn.classList.toggle('active', !!fx.lyricGlow);
-    glowEnableBtn.title = fx.lyricGlow ? '关闭歌词背后的溢光层' : '开启歌词背后的溢光层';
+    glowEnableBtn.title = fx.lyricGlow ? '关闭歌Текст背后的溢光层' : '开启歌Текст背后的溢光层';
   }
   if (glowBeatBtn) {
     glowBeatBtn.classList.toggle('active', !!fx.lyricGlowBeat);

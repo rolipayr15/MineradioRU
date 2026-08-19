@@ -4,7 +4,7 @@ async function analyzeAudioBeats(audioUrl, durationSec, token, options) {
   var softGrooveAnalysis = !!(analysisProfile && analysisProfile.softGroove);
   try {
     beatMapBusy = true;
-    if (options.prefetch) showBeatChip('预热下一首节奏…');
+    if (options.prefetch) showBeatChip('预热下一трека节奏…');
     else if (options.background) showBeatChip('后台缓冲节奏…');
     await yieldToIdle(beatAnalysisYieldMs(options, 140, 760));
     if (token !== beatMapToken) { hideBeatChip(); beatMapBusy = false; return null; }

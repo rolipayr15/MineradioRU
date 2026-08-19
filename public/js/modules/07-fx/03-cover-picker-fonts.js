@@ -44,7 +44,7 @@ function openCoverColorPicker(target) {
   if (!cv) {
     setVisualTintAuto();
     closeCoverColorPicker();
-    showToast('暂无封面，已切换为自动封面取色');
+    showToast('暂无封面，已Режим воспроизведения为自动封面取色');
     return;
   }
   var imgSrc = '';
@@ -132,7 +132,7 @@ function setLyricFont(key) {
   refreshCurrentLyricStyle();
   saveLyricLayout({ user: true, reason: 'lyricFont' });
   pushDesktopLyricsState(true);
-  showToast('歌词字体已切换');
+  showToast('歌Текст字体已Режим воспроизведения');
 }
 function renderCustomLyricFontButtons() {
   var grid = document.getElementById('lyric-font-grid');
@@ -199,7 +199,7 @@ async function handleLyricFontFiles(files) {
     }
     var loaded = await registerCustomLyricFont(record);
     if (!loaded) {
-      showToast('字体加载失败，请换一个字体文件');
+      showToast('字体加载失败，请Изменить一个字体文件');
       return;
     }
     customLyricFonts = [record].concat((customLyricFonts || []).filter(function (item) {
@@ -208,7 +208,7 @@ async function handleLyricFontFiles(files) {
     var saved = saveCustomLyricFonts();
     updateLyricFontControls();
     setLyricFont(customLyricFontKey(record.id));
-    showToast(saved ? '歌词字体已上传' : '字体已临时加载，文件过大无法保存');
+    showToast(saved ? '歌Текст字体已上传' : '字体已临时加载，文件过大无法保存');
   } catch (e) {
     console.warn('[LyricFont] upload failed', e);
     showToast('字体上传失败');
@@ -281,7 +281,7 @@ function setLyricColorAuto() {
   updateLyricGlowControls();
   saveLyricLayout({ syncDisk: true, user: true, reason: 'lyricColorAuto' });
   pushDesktopLyricsState(true);
-  showToast('歌词颜色: 封面取色');
+  showToast('歌Текст颜色: 封面取色');
 }
 function setLyricColorCustom(color, silent) {
   fx.lyricColorMode = 'custom';
@@ -292,7 +292,7 @@ function setLyricColorCustom(color, silent) {
   updateLyricGlowControls();
   saveLyricLayout({ syncDisk: true, user: true, reason: 'lyricColorCustom' });
   pushDesktopLyricsState(true);
-  if (!silent) showToast('歌词颜色: ' + fx.lyricColor.toUpperCase());
+  if (!silent) showToast('歌Текст颜色: ' + fx.lyricColor.toUpperCase());
 }
 function setLyricColorPreset(i) {
   var p = lyricColorPresets[i];
@@ -306,7 +306,7 @@ function setLyricHighlightAuto() {
   updateLyricGlowControls();
   saveLyricLayout({ syncDisk: true, user: true, reason: 'lyricHighlightAuto' });
   pushDesktopLyricsState(true);
-  showToast('高亮颜色: 跟随歌词');
+  showToast('高亮颜色: 跟随歌Текст');
 }
 function setLyricHighlightCustom(color, silent) {
   fx.lyricHighlightMode = 'custom';
